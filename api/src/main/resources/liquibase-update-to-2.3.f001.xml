@@ -22,6 +22,12 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 	<changeSet id="20200331-2" author="cjeyabalan">
-                <update tableName="person_attribute_type"><column name="uuid" value="b1fdf949-eec6-4407-9a57-24fb9ebf1a7a"/><where>person_attribute_type_id= '11' and name = 'Enterprise'</where></update>
+    		<insert tableName="person_attribute_type">
+        		<column name="person_attribute_type_id" value=11/>
+        		<column name="name" value="Enterprise"/>
+        		<column name="description" value="Enterprise"/>
+        		<column name="format" value="java.lang.String"/>
+        		<column name="uuid" value="d258810f-963d-440e-8803-c1090ef19251"/>
+    		</insert>
         </changeSet>
 </databaseChangeLog>
