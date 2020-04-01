@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
@@ -22,6 +21,7 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 	<changeSet id="20200331-2" author="cjeyabalan">
+	<!-- 
     		<insert tableName="person_attribute_type">
         		<column name="person_attribute_type_id" value=11/>
         		<column name="name" value="Enterprise"/>
@@ -29,5 +29,26 @@
         		<column name="format" value="java.lang.String"/>
         		<column name="uuid" value="d258810f-963d-440e-8803-c1090ef19251"/>
     		</insert>
-        </changeSet>
+    		
+    		 -->
+   	     <insert tableName="person_attribute_type">
+            <column name="person_attribute_type_id" valueNumeric="11"/>
+     	 	<column name="name" value="Enterprise"/>
+        	<column name="description" value="Enterprise"/>
+            <column name="format" value="java.lang.String"/>
+            <column name="foreign_key" valueNumeric="0"/>
+            <column name="searchable" valueBoolean="false"/>
+            <column name="creator" valueNumeric="1"/>
+            <column name="date_created" valueDate="2020-04-01"/>
+            <column name="changed_by" />
+            <column name="date_changed"/>
+            <column name="retired" valueBoolean="false"/>
+            <column name="retired_by" />
+            <column name="date_retired"/>
+            <column name="retire_reason"/>
+            <column name="uuid" value="d258810f-963d-440e-8803-c1090ef19251"/>
+        </insert>
+   
+     </changeSet>
+     
 </databaseChangeLog>
