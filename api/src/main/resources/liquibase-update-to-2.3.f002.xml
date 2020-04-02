@@ -25,6 +25,12 @@
             <column name="location_attribute_type_id" valueNumeric="1"/>
      	 	<column name="name" value="Enterprise"/>
         	<column name="description" value="Enterprise"/>
+        	<column name="datatype" />
+        	<column name="datatype_config" />
+        	<column name="preferred_handler" />
+        	<column name="handler_config" />
+        	<column name="min_occurs" valueNumeric="0"/>
+        	<column name="max_occurs" />
             <column name="creator" valueNumeric="1"/>
             <column name="date_created" valueDate="2020-04-02"/>
             <column name="changed_by" />
@@ -33,7 +39,7 @@
             <column name="retired_by" />
             <column name="date_retired"/>
             <column name="retire_reason"/>
-            <column name="uuid" value="ad9fd76b-2e7e-4630-bb4b-a9fb1d12d3ce"/>
+            <column name="uuid" value="13f8550e-24b4-4fe4-b891-2bc52c316992"/>
         </insert>
    
      </changeSet>
