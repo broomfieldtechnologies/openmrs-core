@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+<!--
+    This file contains all changesets that have been introduced on top of liquibase-update-to-2.0.xml exclusively.
+    If you intend for a changeset to be backported to older releases, you must put such a changeset in the
+    liquibase-update-to-2.0.xml, which have been used for older releases.
+-->
+<databaseChangeLog logicalFilePath="liquibase-update-to-latest.xml" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="20200331-2" author="cjeyabalan">
+	<!-- 
+    		<insert tableName="person_attribute_type">
+        		<column name="person_attribute_type_id" value=11/>
+        		<column name="name" value="Enterprise"/>
+        		<column name="description" value="Enterprise"/>
+        		<column name="format" value="java.lang.String"/>
+        		<column name="uuid" value="d258810f-963d-440e-8803-c1090ef19251"/>
+    		</insert>
+    		
+    		 -->
+   	     <insert tableName="person_attribute_type">
+            <column name="person_attribute_type_id" valueNumeric="11"/>
+     	 	<column name="name" value="Enterprise"/>
+        	<column name="description" value="Enterprise"/>
+            <column name="format" value="java.lang.String"/>
+            <column name="foreign_key" valueNumeric="0"/>
+            <column name="searchable" valueBoolean="false"/>
+            <column name="creator" valueNumeric="1"/>
+            <column name="date_created" valueDate="2020-04-01"/>
+            <column name="changed_by" />
+            <column name="date_changed"/>
+            <column name="retired" valueBoolean="false"/>
+            <column name="retired_by" />
+            <column name="date_retired"/>
+            <column name="retire_reason"/>
+            <column name="uuid" value="d258810f-963d-440e-8803-c1090ef19251"/>
+        </insert>
+   
+     </changeSet>
+     
+</databaseChangeLog>
