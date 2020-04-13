@@ -22,4 +22,5 @@
     <include file="liquibase-update-to-2.3.xml"/>
     <include file="liquibase-update-to-2.3.f001.xml"/>
     <include file="liquibase-update-to-2.3.f002.xml"/>
+    <include file="liquibase-update-to-2.3.f003.xml"/>
 </databaseChangeLog>
