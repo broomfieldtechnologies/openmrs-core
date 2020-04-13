@@ -22,30 +22,11 @@
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-	<changeSet id="20200402-2" author="cjeyabalan">
-		<insert tableName="location_attribute_type">
-			<column name="location_attribute_type_id" valueNumeric="1" />
-			<column name="name" value="Enterprise" />
-			<column name="description" value="Enterprise" />
-			<column name="datatype"
-				value="org.openmrs.customdatatype.datatype.LongFreeTextDatatype" />
-			<column name="datatype_config" />
-			<column name="preferred_handler" />
-			<column name="handler_config" />
-			<column name="min_occurs" valueNumeric="0" />
-			<column name="max_occurs" />
-			<column name="creator" valueNumeric="1" />
-			<column name="date_created" valueDate="2020-04-02" />
-			<column name="changed_by" />
-			<column name="date_changed" />
-			<column name="retired" valueBoolean="false" />
-			<column name="retired_by" />
-			<column name="date_retired" />
-			<column name="retire_reason" />
-			<column name="uuid"
-				value="13f8550e-24b4-4fe4-b891-2bc52c316992" />
+	<changeSet id="20200412" author="cjeyabalan">
+		<insert tableName="clob_datatype_storage">
+			<column name="id" valueNumeric="1" />
+			<column name="uuid" value="Enterprise" />
+			<column name="value" value="Enterprise" />
 		</insert>
-
 	</changeSet>
-
 </databaseChangeLog>
