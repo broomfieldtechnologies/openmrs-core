@@ -93,6 +93,15 @@
 				<version>${project.version}</version>
 				<type>war</type>
 			</dependency>
+			
+	   <dependency>
+        	<groupId>bft.openmrs.module</groupId>
+        	<artifactId>enterprise-api</artifactId>
+        	<version>1.0.0-SNAPSHOT</version>
+        	<scope>system</scope>
+        	<systemPath>/Users/subashini/.m2/repository/bft/openmrs/module/enterprise-api/1.0.0-SNAPSHOT/enterprise-api-1.0.0-SNAPSHOT.jar</systemPath>
+        </dependency>
+   
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>

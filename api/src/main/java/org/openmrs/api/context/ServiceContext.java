@@ -23,7 +23,9 @@ import org.openmrs.api.APIException;
 import org.openmrs.api.AdministrationService;
 import org.openmrs.api.CohortService;
 import org.openmrs.api.ConceptService;
+import org.openmrs.api.ConditionService;
 import org.openmrs.api.DatatypeService;
+import org.openmrs.api.DiagnosisService;
 import org.openmrs.api.EncounterService;
 import org.openmrs.api.FormService;
 import org.openmrs.api.LocationService;
@@ -38,12 +40,11 @@ import org.openmrs.api.ProviderService;
 import org.openmrs.api.SerializationService;
 import org.openmrs.api.UserService;
 import org.openmrs.api.VisitService;
-import org.openmrs.api.ConditionService;
-import org.openmrs.api.DiagnosisService;
 import org.openmrs.hl7.HL7Service;
 import org.openmrs.logic.LogicService;
 import org.openmrs.messagesource.MessageSourceService;
 import org.openmrs.messagesource.impl.DefaultMessageSourceServiceImpl;
+import org.openmrs.module.enterprise.api.EnterpriseService;
 import org.openmrs.notification.AlertService;
 import org.openmrs.notification.MessageService;
 import org.openmrs.scheduler.SchedulerService;
@@ -191,6 +192,13 @@ public class ServiceContext implements ApplicationContextAware {
 	 */
 	public EncounterService getEncounterService() {
 		return getService(EncounterService.class);
+	}
+	
+	/**
+	 * @return enterprise-related services
+	 */
+	public EnterpriseService getEnterpriseService() {
+		return getService(EnterpriseService.class);
 	}
 	
 	/**
@@ -399,6 +407,13 @@ public class ServiceContext implements ApplicationContextAware {
 	 */
 	public void setLocationService(LocationService locationService) {
 		setService(LocationService.class, locationService);
+	}
+	
+	/**
+	 * @param enterpriseService the EnterpriseService to set
+	 */
+	public void setEnterpriseService(EnterpriseService enterpriseService) {
+		setService(EnterpriseService.class, enterpriseService);
 	}
 	
 	/**
