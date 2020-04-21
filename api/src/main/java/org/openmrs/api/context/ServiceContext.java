@@ -44,7 +44,7 @@ import org.openmrs.hl7.HL7Service;
 import org.openmrs.logic.LogicService;
 import org.openmrs.messagesource.MessageSourceService;
 import org.openmrs.messagesource.impl.DefaultMessageSourceServiceImpl;
-import org.openmrs.module.enterprise.api.EnterpriseService;
+//import org.openmrs.module.enterprise.api.EnterpriseService;
 import org.openmrs.notification.AlertService;
 import org.openmrs.notification.MessageService;
 import org.openmrs.scheduler.SchedulerService;
@@ -194,12 +194,12 @@ public class ServiceContext implements ApplicationContextAware {
 		return getService(EncounterService.class);
 	}
 	
-	/**
-	 * @return enterprise-related services
-	 */
-	public EnterpriseService getEnterpriseService() {
-		return getService(EnterpriseService.class);
-	}
+	//	/**
+	//	 * @return enterprise-related services
+	//	 */
+	//	public EnterpriseService getEnterpriseService() {
+	//		return getService(EnterpriseService.class);
+	//	}
 	
 	/**
 	 * @return location services
@@ -409,12 +409,12 @@ public class ServiceContext implements ApplicationContextAware {
 		setService(LocationService.class, locationService);
 	}
 	
-	/**
-	 * @param enterpriseService the EnterpriseService to set
-	 */
-	public void setEnterpriseService(EnterpriseService enterpriseService) {
-		setService(EnterpriseService.class, enterpriseService);
-	}
+	//	/**
+	//	 * @param enterpriseService the EnterpriseService to set
+	//	 */
+	//	public void setEnterpriseService(EnterpriseService enterpriseService) {
+	//		setService(EnterpriseService.class, enterpriseService);
+	//	}
 	
 	/**
 	 * @param formService the formService to set
