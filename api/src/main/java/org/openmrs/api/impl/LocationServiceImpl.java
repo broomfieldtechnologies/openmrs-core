@@ -508,4 +508,17 @@ public class LocationServiceImpl extends BaseOpenmrsService implements LocationS
 	public LocationAttributeType getLocationAttributeTypeByName(String name) {
 		return dao.getLocationAttributeTypeByName(name);
 	}
+
+	@Override
+	public List<Location> getLocationsByTagAndEnterpriseId(LocationTag tag, String enterpriseGuid) {
+List<Location> locations = new ArrayList<>();
+		
+		for (Location l : dao.getAllLocationsByEnterpriseId(false, enterpriseGuid)) {
+			if (l.getTags().contains(tag)) {
+				locations.add(l);
+			}
+		}
+		
+		return locations;
+	}
 }

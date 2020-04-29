@@ -499,4 +499,7 @@ public interface LocationService extends OpenmrsService {
 	 */
 	@Authorized(PrivilegeConstants.GET_LOCATION_ATTRIBUTE_TYPES)
 	LocationAttributeType getLocationAttributeTypeByName(String locationAttributeTypeName);
+	
+	@Authorized( { PrivilegeConstants.GET_LOCATIONS })
+	List<Location> getLocationsByTagAndEnterpriseId(LocationTag tag, String enterpriseGuid);
 }
