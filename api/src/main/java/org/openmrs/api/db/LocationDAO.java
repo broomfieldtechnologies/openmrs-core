@@ -201,4 +201,6 @@ public interface LocationDAO {
 	 * @should ignore null values in location tag list
 	 */
 	List<Location> getLocationsHavingAllTags(List<LocationTag> locationTagIdList);
+
+	public List<Location> getAllLocationsByEnterpriseId(boolean b, String enterpriseGuid);
 }

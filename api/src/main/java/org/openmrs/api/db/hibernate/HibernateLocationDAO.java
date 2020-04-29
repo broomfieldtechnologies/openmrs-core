@@ -11,6 +11,7 @@ package org.openmrs.api.db.hibernate;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -360,5 +361,25 @@ public class HibernateLocationDAO implements LocationDAO {
 			locationTagIds.add(tag.getLocationTagId());
 		}
 		return locationTagIds;
+	}
+
+	@Override
+	public List<Location> getAllLocationsByEnterpriseId(boolean includeRetired, String enterpriseGuid) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Location.class);
+		if (!includeRetired) {
+			criteria.add(Restrictions.eq("retired", false));
+		} else {
+			//push retired locations to the end of the returned list
+			criteria.addOrder(Order.asc("retired"));
+		}
+		LocationAttributeType latForEnterprise = getLocationAttributeTypeByName("Enterprise");
+		Map <LocationAttributeType, String> serializedAttributeValues = 
+				new HashMap<LocationAttributeType, String>();
+		serializedAttributeValues.put(latForEnterprise, enterpriseGuid);
+		if (serializedAttributeValues != null) {
+			HibernateUtil.addAttributeCriteria(criteria, serializedAttributeValues);
+		}
+		criteria.addOrder(Order.asc("name"));
+		return criteria.list();
 	}
 }
