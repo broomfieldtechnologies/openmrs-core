@@ -45,7 +45,15 @@
 			<column name="uuid"
 				value="13f8550e-24b4-4fe4-b891-2bc52c316992" />
 		</insert>
-
 	</changeSet>
+	
+	<changeSet id="20200627" author="bft">
+		<update tableName="location_attribute_type">
+			<column name="datatype"
+				value="org.openmrs.customdatatype.datatype.FreeTextDatatype"/>
+			<where>name='Enterprise'</where>
+		</update>
+	</changeSet>
+	
 
 </databaseChangeLog>
