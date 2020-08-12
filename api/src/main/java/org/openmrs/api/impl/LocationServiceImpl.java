@@ -511,7 +511,7 @@ public class LocationServiceImpl extends BaseOpenmrsService implements LocationS
 
 	@Override
 	public List<Location> getLocationsByTagAndEnterpriseId(LocationTag tag, String enterpriseGuid) {
-List<Location> locations = new ArrayList<>();
+		List<Location> locations = new ArrayList<>();
 		
 		for (Location l : dao.getAllLocationsByEnterpriseId(false, enterpriseGuid)) {
 			if (l.getTags().contains(tag)) {
@@ -520,5 +520,16 @@ List<Location> locations = new ArrayList<>();
 		}
 		
 		return locations;
+	}
+	
+	@Override
+	public String getEnterpriseForLoggedinUser() {
+		String enterpriseValue = "";
+		if( Context.getAuthenticatedUser() != null
+				&& Context.getAuthenticatedUser().getPerson() != null
+				&& Context.getAuthenticatedUser().getPerson().getAttribute("Enterprise") != null) {
+			enterpriseValue = Context.getAuthenticatedUser().getPerson().getAttribute("Enterprise").getValue();
+		}
+		return enterpriseValue;
 	}
 }
