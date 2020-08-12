@@ -502,4 +502,7 @@ public interface LocationService extends OpenmrsService {
 	
 	@Authorized( { PrivilegeConstants.GET_LOCATIONS })
 	List<Location> getLocationsByTagAndEnterpriseId(LocationTag tag, String enterpriseGuid);
+	
+	@Authorized( { PrivilegeConstants.GET_LOCATIONS })
+	public String getEnterpriseForLoggedinUser();
 }
