@@ -10,6 +10,7 @@
 package org.openmrs.api;
 
 import java.util.List;
+
 import java.util.Map;
 
 import org.openmrs.Address;
@@ -134,6 +135,20 @@ public interface LocationService extends OpenmrsService {
 	 */
 	@Authorized( { PrivilegeConstants.GET_LOCATIONS })
 	public List<Location> getAllLocations(boolean includeRetired) throws APIException;
+	
+	
+	@Authorized( { PrivilegeConstants.GET_LOCATIONS })
+	public List<Location> getAllLocationsForEnterpriseId() throws APIException;
+	
+	/**
+	 * Returns all locations.
+	 * 
+	 * @param includeRetired whether or not to include retired locations
+	 * @should return all locations when includeRetired is true
+	 * @should return only unretired locations when includeRetires is false
+	 */
+	@Authorized( { PrivilegeConstants.GET_LOCATIONS })
+	public List<Location> getAllLocationsForEnterpriseId(boolean includeRetired) throws APIException;
 	
 	/**
 	 * Returns locations that match the beginning of the given string. A null list will never be

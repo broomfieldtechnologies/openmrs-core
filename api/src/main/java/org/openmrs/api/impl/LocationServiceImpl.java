@@ -10,6 +10,7 @@
 package org.openmrs.api.impl;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -187,6 +188,27 @@ public class LocationServiceImpl extends BaseOpenmrsService implements LocationS
 	@Transactional(readOnly = true)
 	public List<Location> getAllLocations(boolean includeRetired) throws APIException {
 		return dao.getAllLocations(includeRetired);
+	}
+	
+	/**
+	 * @see org.openmrs.api.LocationService#getAllLocationsForEnterpriseId()
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<Location> getAllLocationsForEnterpriseId() throws APIException {
+		String enterpriseId = getEnterpriseForLoggedinUser();
+		return dao.getAllLocationsByEnterpriseId(true, enterpriseId);
+	}
+	
+	/**
+	 * @see org.openmrs.api.LocationService#getAllLocationsForEnterpriseId(boolean)
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<Location> getAllLocationsForEnterpriseId(boolean includeRetired) throws APIException {
+		String enterpriseId = getEnterpriseForLoggedinUser();
+		return dao.getAllLocationsByEnterpriseId(includeRetired, enterpriseId);
+//		return dao.getAllLocations(includeRetired);
 	}
 	
 	/**
