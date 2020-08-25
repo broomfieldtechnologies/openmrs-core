@@ -287,7 +287,7 @@ public class Location extends BaseCustomizableMetadata<LocationAttribute> implem
 	@Override
 	public List<Location> getPossibleValues() {
 		try {
-			return Context.getLocationService().getAllLocationsForEnterpriseId();
+			return Context.getLocationService().getAllLocations();
 		}
 		catch (Exception e) {
 			return Collections.emptyList();

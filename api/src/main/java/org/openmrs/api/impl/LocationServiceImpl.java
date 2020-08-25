@@ -187,8 +187,6 @@ public class LocationServiceImpl extends BaseOpenmrsService implements LocationS
 	@Override
 	@Transactional(readOnly = true)
 	public List<Location> getAllLocations(boolean includeRetired) throws APIException {
-//		String enterpriseId = getEnterpriseForLoggedinUser();
-//		return dao.getAllLocationsByEnterpriseId(includeRetired, enterpriseId);
 		return dao.getAllLocations(includeRetired);
 	}
 	
