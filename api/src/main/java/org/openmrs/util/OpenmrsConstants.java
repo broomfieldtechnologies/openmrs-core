@@ -9,13 +9,15 @@
  */
 package org.openmrs.util;
 
+import static java.util.Arrays.asList;
+
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
@@ -32,8 +34,6 @@ import org.openmrs.patient.impl.LuhnIdentifierValidator;
 import org.openmrs.scheduler.SchedulerConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static java.util.Arrays.asList;
 
 /**
  * Constants used in OpenMRS. Contents built from build properties (version, version_short, and
@@ -254,6 +254,8 @@ public final class OpenmrsConstants {
 	public static final String GLOBAL_PROPERTY_DEFAULT_THEME = "default_theme";
 	
 	public static final String GLOBAL_PROPERTY_APPLICATION_NAME = "application.name";
+	
+	public static final String GLOBAL_PROPERTY_STANDARD_DRUG_REGIMENS = "dashboard.regimen.standardRegimens";
 	
 	/**
 	 * Array of all core global property names that represent comma-separated lists of
@@ -1110,6 +1112,8 @@ public final class OpenmrsConstants {
 				.add(new GlobalProperty(GP_DRUG_ORDER_DRUG_OTHER, "", "Specifies the uuid of the concept which represents drug other non coded"));
 		props.add(new GlobalProperty(GP_LOGIN_URL, LOGIN_URL,
 			"Responsible for defining the Authentication URL "));
+		props.add(new GlobalProperty(GLOBAL_PROPERTY_STANDARD_DRUG_REGIMENS, standardRegimens,
+		        "XML description of standard drug regimens, to be shown as shortcuts on the dashboard regimen entry tab"));
 		props.addAll(ModuleFactory.getGlobalProperties());
 		
 		return props;

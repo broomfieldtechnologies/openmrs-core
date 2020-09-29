@@ -22,6 +22,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -39,12 +40,12 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "conditions")
-public class Condition extends BaseChangeableOpenmrsData {
+public class Condition extends BaseFormRecordableOpenmrsData {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "condition_id")
 	private Integer conditionId;
 	
@@ -82,6 +83,10 @@ public class Condition extends BaseChangeableOpenmrsData {
 	@JoinColumn(name = "patient_id")
 	private Patient patient;
 	
+	@ManyToOne(optional = true)
+	@JoinColumn(name = "encounter_id")
+	private Encounter encounter;
+	
 	public Condition() {
 	}
 	
@@ -105,8 +110,8 @@ public class Condition extends BaseChangeableOpenmrsData {
 		this.verificationStatus = verificationStatus;
 		this.previousVersion = previousVersion;
 		this.additionalDetail = additionalDetail;
-		this.onsetDate = onsetDate;
-		this.endDate = endDate;
+		this.onsetDate = onsetDate != null ? new Date(onsetDate.getTime()) : null;
+		this.endDate = endDate != null ? new Date(endDate.getTime()) : null;
 		this.patient = patient;
 	}
 	
@@ -246,7 +251,7 @@ public class Condition extends BaseChangeableOpenmrsData {
 	 *         set
 	 */
 	public Date getOnsetDate() {
-		return onsetDate;
+		return onsetDate != null ? (Date) onsetDate.clone() : null;
 	}
 	
 	/**
@@ -255,7 +260,7 @@ public class Condition extends BaseChangeableOpenmrsData {
 	 * @param onsetDate the onset date of the condition to be set
 	 */
 	public void setOnsetDate(Date onsetDate) {
-		this.onsetDate = onsetDate;
+		this.onsetDate = onsetDate != null ? new Date(onsetDate.getTime()) : null;
 	}
 	
 	/**
@@ -264,7 +269,7 @@ public class Condition extends BaseChangeableOpenmrsData {
 	 * @return endDate - a date object that shows the end date of the condition
 	 */
 	public Date getEndDate() {
-		return endDate;
+		return endDate != null ? (Date) endDate.clone() : null;
 	}
 	
 	/**
@@ -273,7 +278,7 @@ public class Condition extends BaseChangeableOpenmrsData {
 	 * @param endDate the end date to be set for the condition
 	 */
 	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
+		this.endDate = endDate != null ? new Date(endDate.getTime()) : null;
 	}
 	
 	/**
@@ -328,6 +333,26 @@ public class Condition extends BaseChangeableOpenmrsData {
 		this.patient = patient;
 	}
 	
+	/**
+	 * Basic property getter for encounter
+	 * 
+	 * @return encounter - the associated encounter
+	 * @since 2.4.0, 2.3.1
+	 */
+	public Encounter getEncounter() {
+		return encounter;
+	}
+	
+	/**
+	 * Basic property setter for encounter
+	 * 
+	 * @param encounter - the encounter to set
+	 * @since 2.4.0, 2.3.1
+	 */
+	public void setEncounter(Encounter encounter) {
+		this.encounter = encounter;
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {
@@ -340,34 +365,36 @@ public class Condition extends BaseChangeableOpenmrsData {
 			return false;
 		}
 		
-		Condition condition = (Condition) o;
+		Condition conditionToBeChecked = (Condition) o;
 		
-		if (!patient.equals(condition.patient)) {
+		if (!patient.equals(conditionToBeChecked.patient)) {
 			return false;
 		}
-		if (clinicalStatus != condition.clinicalStatus) {
+		if (clinicalStatus != conditionToBeChecked.clinicalStatus) {
 			return false;
 		}
-		if (verificationStatus != condition.verificationStatus) {
+		if (verificationStatus != conditionToBeChecked.verificationStatus) {
 			return false;
 		}
-		if (this.condition.getCoded() != null && !this.condition.getCoded().equals(condition.getCondition().getCoded())) {
+		if (this.condition.getCoded() != null
+		        && !this.condition.getCoded().equals(conditionToBeChecked.getCondition().getCoded())) {
 			return false;
 		}
 		if (this.condition.getNonCoded() != null
-		        ? !this.condition.getNonCoded().equals(condition.getCondition().getNonCoded())
-		        : condition.getCondition().getNonCoded() != null) {
+		        ? !this.condition.getNonCoded().equals(conditionToBeChecked.getCondition().getNonCoded())
+		        : conditionToBeChecked.getCondition().getNonCoded() != null) {
 			return false;
 		}
-		if (!Objects.equals(onsetDate, condition.onsetDate)) {
+		if (!Objects.equals(onsetDate, conditionToBeChecked.onsetDate)) {
 			return false;
 		}
-		if (!Objects.equals(additionalDetail, condition.additionalDetail)) {
+		if (!Objects.equals(additionalDetail, conditionToBeChecked.additionalDetail)) {
 			return false;
 		}
-		if (!Objects.equals(endDate, condition.endDate)) {
+		if (!Objects.equals(endDate, conditionToBeChecked.endDate)) {
 			return false;
 		}
-		return Objects.equals(endReason, condition.endReason);
+		return Objects.equals(endReason, conditionToBeChecked.endReason);
 	}
+	
 }
