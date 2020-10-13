@@ -55,5 +55,18 @@
 		</update>
 	</changeSet>
 	
-
+       <changeSet id="20201013-US10060" author="BFT">
+            <preConditions onFail="MARK_RAN">
+                <not>
+                    <tableExists tableName="user_acknowledge" />
+                </not>
+            </preConditions>
+             <comment>Creating user_acknowledge table</comment>
+            <createTable tableName="user_acknowledge">
+                <column name="user_name" type="varchar(50)">
+                      <constraints nullable="false"/>
+                </column>
+                <column name="login_date" type="datetime"><constraints nullable="false"/></column>
+            </createTable>
+    </changeSet>
 </databaseChangeLog>
