@@ -520,4 +520,8 @@ public interface LocationService extends OpenmrsService {
 	
 	@Authorized( { PrivilegeConstants.GET_LOCATIONS })
 	public String getEnterpriseForLoggedinUser();
+
+	List<Location> getLocationsHavingAnyTagForEnterpriseGujid(List<LocationTag> tags, String enterpriseGuid)
+			throws APIException;
+
 }

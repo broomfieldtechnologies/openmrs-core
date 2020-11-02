@@ -321,4 +321,6 @@ public interface ProviderService extends OpenmrsService {
 	 */
 	@Authorized( { PrivilegeConstants.GET_PROVIDERS })
 	public Provider getUnknownProvider();
+
+	List<Provider> getAllProvidersForEnterprise(boolean includeRetired, String Enterprise);
 }

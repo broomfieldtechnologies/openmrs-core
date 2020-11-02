@@ -844,4 +844,7 @@ public interface PatientService extends OpenmrsService {
 	 * @throws PatientIdentifierTypeLockedException
 	 */
 	public void checkIfPatientIdentifierTypesAreLocked() throws PatientIdentifierTypeLockedException;
+	
+	public void exitFromCare(Patient patient, Date dateExited, Concept reasonForExit) throws APIException;
+
 }
