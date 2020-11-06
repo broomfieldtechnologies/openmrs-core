@@ -268,7 +268,7 @@ public class LocationServiceImpl extends BaseOpenmrsService implements LocationS
 	
 	@Override
 	@Transactional(readOnly = true)
-	public List<Location> getLocationsHavingAnyTagForEnterpriseGujid(List<LocationTag> tags, String enterpriseGuid) throws APIException {
+	public List<Location> getLocationsHavingAnyTagForEnterpriseGuid(List<LocationTag> tags, String enterpriseGuid) throws APIException {
 		List<Location> locations = new ArrayList<>();
 		
 		for (Location loc : dao.getAllLocationsByEnterpriseId(false, enterpriseGuid)) {
