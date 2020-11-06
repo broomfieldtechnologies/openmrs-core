@@ -32,6 +32,7 @@ import org.openmrs.api.OpenmrsService;
 import org.openmrs.api.OrderService;
 import org.openmrs.api.OrderSetService;
 import org.openmrs.api.PatientService;
+import org.openmrs.api.PatientSetService;
 import org.openmrs.api.PersonService;
 import org.openmrs.api.ProgramWorkflowService;
 import org.openmrs.api.ProviderService;
@@ -448,6 +449,20 @@ public class ServiceContext implements ApplicationContextAware {
 	 */
 	public void setPatientService(PatientService patientService) {
 		setService(PatientService.class, patientService);
+	}
+	
+	/**
+	 * @return patient related services
+	 */
+	public PatientSetService getPatientSetService() {
+		return getService(PatientSetService.class);
+	}
+	
+	/**
+	 * @param patientService the patientService to set
+	 */
+	public void setPatientSetService(PatientSetService patientSetService) {
+		setService(PatientSetService.class, patientSetService);
 	}
 	
 	/**
