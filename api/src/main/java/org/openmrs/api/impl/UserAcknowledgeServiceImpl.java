@@ -14,31 +14,54 @@ import org.openmrs.api.APIException;
 import org.openmrs.api.UserAcknowledgeService;
 import org.openmrs.api.UserService;
 import org.openmrs.api.db.UserAcknowledgeDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserAcknowledgeServiceImpl extends BaseOpenmrsService implements UserAcknowledgeService {
+UserAcknowledgeDAO userAcknowledgeDAO;
 	
-	UserAcknowledgeDAO dao;
+	public UserAcknowledgeDAO getUserAcknowledgeDAO() {
+		return userAcknowledgeDAO;
+	}
+
+	public void setUserAcknowledgeDAO(UserAcknowledgeDAO userAcknowledgeDAO) {
+		this.userAcknowledgeDAO = userAcknowledgeDAO;
+	}
 	
-	UserService userService;
+	//@Autowired
+	UserAcknowledgeService userAcknowledgeService;
+	
+	//@Autowired
+	public UserAcknowledgeService getUserAcknowledgeService() {
+		return userAcknowledgeService;
+	}
+	//@Autowired
+	public void setUserAcknowledgeService(UserAcknowledgeService userAcknowledgeService) {
+		this.userAcknowledgeService = userAcknowledgeService;
+	}
+	
+
+	//UserService userService;
+	
+	
+	
+	
+	
 	
 	/**
 	 * Injected in moduleApplicationContext.xml
 	 */
-	public void setDao(UserAcknowledgeDAO dao) {
-		this.dao = dao;
-	}
 	
-	/**
-	 * Injected in moduleApplicationContext.xml
-	 */
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
+	//public void setUserService(UserService userService) {
+	//	this.userService = userService;
+	//}
 	
-	@Override
-	public UserAcknowledge getUserAcknowledgeById(Integer id) throws APIException {
-		return dao.getUserAcknowledgeById(id);
-	}
+	
+	
+	
+	//@Override
+	//public UserAcknowledge getUserAcknowledgeById(Integer id) throws APIException {
+	//	return dao.getUserAcknowledgeById(id);
+	//}
 	
 	@Override
 	public UserAcknowledge saveUserAcknowledge(UserAcknowledge userAcknowledge) throws APIException {
@@ -46,6 +69,6 @@ public class UserAcknowledgeServiceImpl extends BaseOpenmrsService implements Us
 		//			enterprise.setCreator(userService.getUser(1));
 		//		}
 		
-		return dao.saveUserAcknowledge(userAcknowledge);
+		return userAcknowledgeDAO.saveUserAcknowledge(userAcknowledge);
 	}
 }

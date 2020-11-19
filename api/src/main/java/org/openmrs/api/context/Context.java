@@ -52,6 +52,7 @@ import org.openmrs.api.ProgramWorkflowService;
 import org.openmrs.api.ProviderService;
 import org.openmrs.api.SerializationService;
 import org.openmrs.api.UserService;
+import org.openmrs.api.UserAcknowledgeService;
 import org.openmrs.api.VisitService;
 import org.openmrs.api.db.ContextDAO;
 import org.openmrs.hl7.HL7Service;
@@ -488,6 +489,14 @@ public class Context {
 		return getServiceContext().getUserService();
 	}
 
+	
+	//sindhu
+	
+	public static UserAcknowledgeService getUserAcknowledgeService() {
+		return getServiceContext().getUserAcknowledgeService();
+	}
+	//sindhu
+	
 	/**
 	 * @return order service
 	 */
@@ -653,6 +662,20 @@ public class Context {
 		return getUserContext().getAuthenticatedUser();
 	}
 
+	
+	//sindhu
+	public static Integer getAuthUserId() {
+		User u1;
+		Integer x=0;
+		u1=getUserContext().getAuthenticatedUser();
+		if(u1!=null) {
+			 x=u1.getUserId();
+			
+		}
+		return x;
+		
+	}
+	//sindhu
 	/**
 	 * @return true if user has been authenticated in this context
 	 */

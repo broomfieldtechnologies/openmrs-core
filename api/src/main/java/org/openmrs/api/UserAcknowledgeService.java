@@ -10,20 +10,30 @@
 package org.openmrs.api;
 
 import org.openmrs.UserAcknowledge;
+import org.openmrs.api.db.*;
 import org.openmrs.annotation.Authorized;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface UserAcknowledgeService extends OpenmrsService {
 	
-	//	public void setUserAcknowledgeDAO(UserAcknowledgeDAO dao);
+	public UserAcknowledgeDAO getUserAcknowledgeDAO();
 	
-	//	public UserAcknowledge getUserAcknowledge(Integer userAcknowledgeId) throws APIException;
+	public void setUserAcknowledgeDAO(UserAcknowledgeDAO userAcknowledgeDAO);
 	
-	@Authorized()
-	@Transactional(readOnly = true)
-	UserAcknowledge getUserAcknowledgeById(Integer id) throws APIException;
+	public void setUserAcknowledgeService(UserAcknowledgeService userAcknowledgeService);
+	
+	
+	
+	public UserAcknowledgeService getUserAcknowledgeService();
+	//the above throws api exception in the last code
+	
+	//@Authorized()
+	//@Transactional(readOnly = true)
+	//UserAcknowledge getUserAcknowledgeById(Integer id) throws APIException;
 	
 	//	@Authorized(EnterpriseConfig.MODULE_PRIVILEGE)
+	
+	@Authorized()
 	@Transactional
 	UserAcknowledge saveUserAcknowledge(UserAcknowledge userAcknowledge) throws APIException;
 }

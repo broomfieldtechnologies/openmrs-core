@@ -9,33 +9,19 @@
  */
 package org.openmrs.api.db;
 
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.UserAcknowledge;
 import org.openmrs.api.db.hibernate.DbSession;
 import org.openmrs.api.db.hibernate.DbSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class UserAcknowledgeDAO {
+public interface UserAcknowledgeDAO {
 	
-	//	public UserAcknowledge saveUserAcknowledge(UserAcknowledge userAcknowledge) throws DAOException;
+	public SessionFactory getSessionFactory();
 	
-	@Autowired
-	DbSessionFactory sessionFactory;
+	public void setSessionFactory(SessionFactory sessionFactory);
 	
-	private DbSession getSession() {
-		return sessionFactory.getCurrentSession();
-	}
+	public UserAcknowledge saveUserAcknowledge(UserAcknowledge userAcknowledge) throws DAOException;
 	
-	//	public UserAcknowledge getUserAcknowledge(Integer userAcknowledgeId) throws DAOException;
-	
-	//	public void deleteUserAcknowledge(UserAcknowledge userAcknowledge) throws DAOException;
-	
-	public UserAcknowledge getUserAcknowledgeById(Integer id) {
-		return (UserAcknowledge) getSession().createCriteria(UserAcknowledge.class).add(Restrictions.eq("id", id)).uniqueResult();
-	}
-	
-	public UserAcknowledge saveUserAcknowledge(UserAcknowledge userAcknowledge) {
-		getSession().saveOrUpdate(userAcknowledge);
-		return userAcknowledge;
-	}
 }
