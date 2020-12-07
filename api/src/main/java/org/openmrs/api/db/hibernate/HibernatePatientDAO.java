@@ -818,7 +818,8 @@ public class HibernatePatientDAO implements PatientDAO {
 		List<Patient> patientsOfEnterprise = new LinkedList<>();
 		
 		for (Patient patient : patients) {
-			if ((patient.getPerson().getAttribute("Enterprise").getValue()).equals(enterpriseId)) {
+			if ((patient.getPerson().getAttribute("Enterprise") != null ) &&
+					(patient.getPerson().getAttribute("Enterprise").getValue()).equals(enterpriseId)) {
 				patientsOfEnterprise.add(patient);
 			}
 		}
