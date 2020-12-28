@@ -1,0 +1,194 @@
+<htmlform>
+
+    <macros>
+        paperFormId = (Fill this in)
+        headerColor =#009d8e
+        fontOnHeaderColor = white
+        lightgrey=#e0e0e0
+        lightblue=#95ADCA
+        darkblue=#4444ff
+    </macros>
+    
+    <style>
+        .section {
+        border: 1px solid $headerColor;
+        padding: 4px;
+        text-align: left;
+        margin-bottom: 1em;
+        }
+        .sectionHeader {
+        background-color: $headerColor;
+        color: $fontOnHeaderColor;
+        display: block;
+        padding: 4px;
+        font-weight: bold;
+        }
+        table.baseline-aligned td {
+        vertical-align: baseline;
+        }
+    </style>
+  
+    <div class="hidden" id="encounter-details" sectionTag="section" headerStyle="title" headerLabel="Encounter Details">
+        <fieldset>
+            <legend>When?</legend>
+            <label>When?</label>
+
+            <encounterDate default="now" showTime="false"/>
+        </fieldset>
+
+        <fieldset>
+            <legend>Who?</legend>
+            <label>Who?</label>
+
+            <encounterProviderAndRole default="currentUser" encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f" required="true"/>
+        </fieldset>
+
+        <fieldset>
+            <legend>Where?</legend>
+            <label>Where?</label>
+
+            <encounterLocation default="SessionAttribute:emrContext.sessionLocationId"/>
+    
+        </fieldset>
+    </div>
+
+
+    <span style="float:right">Paper Form ID: $paperFormId</span>
+    <h2>ORTHO EXAMINATION FORM</h2>
+        <!--PATIENT DETAILS:
+        <br/> NAME: <lookup expression="patient.personName"/> 
+        <br/> GENDER: <lookup expression="patient.gender"/> 
+        <br/> AGE: <lookup expression="patient.age"/> 
+        -->
+
+    <section headerLabel="EXAMINATION OF BONE DISEASES">
+
+        <div style="background-color: $lightgrey" align="left"><b>HISTORY</b></div>
+        <br/> 
+        <obs conceptId="166007" labelText="Pain"/> <br/> <br/> 
+        <obs conceptId="166008" labelText="Duration"/> <br/> <br/> 
+        <obs conceptId="166009" labelText="Sinuses"/> <br/> <br/> 
+        <obs conceptId="6001" labelText="Similar Swelling"/> <br/> <br/> 
+
+        <div style="background-color: $lightgrey" align="left"><b>LOCAL EXAMINATION - INSPECTION</b></div>
+        <br/> 
+        <obs conceptId="6001" labelText="Swelling"/> <br/> <br/> 
+        <obs conceptId="166000" labelText="Skin Overlying the Swelling"/> <br/> <br/> 
+        <obs conceptId="166001" labelText="Pressure Effects"/> <br/> <br/>
+        <obs conceptId="166002" labelText="Neighbouring Joints"/> <br/> <br/>
+        <obs conceptId="166003" labelText="Muscular Wasting"/> <br/> <br/>
+        <obs conceptId="166004" labelText="Shortening/Lengthening of Bone"/> <br/> <br/>
+
+        <div style="background-color: $lightgrey" align="left"><b>PALPATION</b></div>
+        <br/> 
+        <obs conceptId="166006" labelText="Local Temperature"/> <br/> <br/>
+        <obs conceptId="6001" labelText="Swelling"/> <br/> <br/> 
+        <obs conceptId="166005" labelText="Bony Irregularities"/> <br/> <br/>
+        <obs conceptId="166011" labelText="Ulcer"/> <br/> <br/> 
+        <obs conceptId="166009" labelText="Sinuses"/> <br/> <br/> 
+        <obs conceptId="177" labelText="Presence of Fracture"/> <br/> <br/> 
+        <obs conceptId="166002" labelText="Neighbouring Joints"/> <br/> <br/>
+        
+        <div style="background-color: $lightgrey" align="left"><b>PERCUSSION</b></div>
+        <br/>
+        <obs conceptId="166012"/> <br/> <br/>
+        
+        <div style="background-color: $lightgrey" align="left"><b>AUSCULTATION</b></div>
+        <br/>
+        <obs conceptId="166013"/> <br/> <br/>
+        
+        <div style="background-color: $lightgrey" align="left"><b>GENERAL EXAMINATIONS - INVESTIGATION</b></div>
+        <br/>
+        <obs conceptId="166014" labelText="Blood"/> <br/> <br/>
+        <obs conceptId="159994" labelText="Urine"/> <br/> <br/>
+        <obs conceptId="166018" labelText="X-Ray"/> <br/> <br/>
+        <obs conceptId="166015" labelText="Arteriography"/> <br/> <br/>
+        <obs conceptId="166016" labelText="Radioactive Scanning"/> <br/> <br/>
+        <obs conceptId="166017" labelText="Bacteriological Examinations"/> <br/> <br/>
+
+        <div style="background-color: $lightgrey" align="left"><b>DIAGNOSIS</b></div>
+        <br/>
+        <obs conceptId="166019"/> <br/> <br/>
+        <div style="background-color: $lightgrey" align="left"><b>TREATMENT</b></div>
+        <br/>
+        <obs conceptId="166020" labelText="CONSERVATIVE" style="textarea" rows="5"/> <br/> <br/>
+        <obs conceptId="166021
+        " labelText="SURGICAL" style="textarea" rows="5"/> <br/> <br/>
+
+    </section>
+
+    <section headerLabel="EXAMINATION OF BONE AND JOINT INJURIES">
+       
+        <div style="background-color: $lightgrey" align="left"><b>HISTORY</b></div>
+        <br/> 
+        <obs conceptId="166022" labelText="Age"/> <br/> <br/> 
+        <obs conceptId="6001" labelText="Swelling"/> <br/> <br/> 
+        <obs conceptId="166023" labelText="Amount and Nature of Violence"/> <br/> <br/> 
+        <obs conceptId="166007" labelText="Pain"/> <br/> <br/> 
+        <obs conceptId="166024" labelText="Loss of Function, if any"/> <br/> <br/> 
+      
+        DEFORMITY:<br/> <br/> 
+        <obs conceptId="166025" labelText="Site"/> <br/> <br/> 
+        <obs conceptId="166026" labelText="Onset"/> <br/> <br/> 
+        <obs conceptId="166027" labelText="Progression"/> <br/> <br/> 
+        <obs conceptId="166028" labelText="Duration"/> <br/> <br/> 
+        <obs conceptId="166029" labelText="Associated Factor"/> <br/> <br/> 
+       
+        <div style="background-color: $lightgrey" align="left"><b>LOCAL EXAMINATION - INSPECTION</b></div>
+        <br/> 
+        <obs conceptId="6001" labelText="Abnormal Swelling and Deformity"/> <br/> <br/> 
+        <obs conceptId="166030" labelText="Attitude"/> <br/> <br/>
+        <obs conceptId="166004" labelText="Shortening"/> <br/> <br/>
+        <obs conceptId="166000" labelText="Skin Overlying"/> <br/> <br/>
+
+        <div style="background-color: $lightgrey" align="left"><b>PALPATION</b></div>
+        <br/> 
+        <obs conceptId="166031" labelText="Tenderness"/> <br/> <br/>
+        <obs conceptId="166005" labelText="Bony Irregularities"/> <br/> <br/>
+        <obs conceptId="166032" labelText="Abnormal Movements"/> <br/> <br/> 
+        <obs conceptId="166033" labelText="Crepitus"/> <br/> <br/> 
+        <obs conceptId="166034" labelText="Absence of Transmitter Movements"/> <br/> <br/> 
+        <obs conceptId="6001" labelText="Swelling"/> <br/> <br/> 
+        <obs conceptId="166035" labelText="Wound"/> <br/> <br/> 
+        <obs conceptId="166036" labelText="Complications"/> <br/> <br/> 
+
+        <div style="background-color: $lightgrey" align="left"><b>PERCUSSION</b></div>
+        <br/>
+        <obs conceptId="166012"/> <br/> <br/>
+
+        <div style="background-color: $lightgrey" align="left"><b>AUSCULTATION</b></div>
+        <br/>
+        <obs conceptId="166013"/> <br/> <br/>
+
+        <div style="background-color: $lightgrey" align="left"><b>GENERAL EXAMINATIONS - INVESTIGATION</b></div>
+        <br/>
+        <obs conceptId="166014" labelText="Blood"/> <br/> <br/>
+        <obs conceptId="159994" labelText="Urine"/> <br/> <br/>
+        <obs conceptId="166018" labelText="X-Ray (Chest)"/> <br/> <br/>
+        <obs conceptId="166037" labelText="ECG"/> <br/> <br/>
+        <obs conceptId="166038" labelText="Arthroscopy"/> <br/> <br/>
+        <obs conceptId="166039" labelText="Bone Scan"/> <br/> <br/>
+        <obs conceptId="166040" labelText="Arthrography"/> <br/> <br/>
+        <obs conceptId="166041" labelText="MRI"/> <br/> <br/>
+        <obs conceptId="845" labelText="Ultrasound Scan - Abdomen"/> <br/> <br/>
+        <obs conceptId="166042" labelText="CT - Brain"/> <br/> <br/>
+        <obs conceptId="166043" labelText="Colour Doppler"/> <br/> <br/>
+
+        <div style="background-color: $lightgrey" align="left"><b>DIAGNOSIS</b></div>
+        <br/>
+        <obs conceptId="166019"/> <br/> <br/>
+
+        <div style="background-color: $lightgrey" align="left"><b>TREATMENT</b></div>
+        <br/>
+        <obs conceptId="166020" labelText="CONSERVATIVE" style="textarea" rows="5"/> <br/> <br/>
+        <obs conceptId="166021" labelText="SURGICAL" style="textarea" rows="5"/> <br/> <br/>
+
+    </section>
+
+    <submit submitClass="confirm right" submitCode="uicommons.saveForm" />
+
+        <ifMode mode="VIEW" include="false">
+            <button class="cancel"><uimessage code="uicommons.cancelForm"/></button>
+        </ifMode> 
+
+</htmlform>

@@ -9,13 +9,15 @@
  */
 package org.openmrs.util;
 
+import static java.util.Arrays.asList;
+
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
@@ -32,8 +34,6 @@ import org.openmrs.patient.impl.LuhnIdentifierValidator;
 import org.openmrs.scheduler.SchedulerConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static java.util.Arrays.asList;
 
 /**
  * Constants used in OpenMRS. Contents built from build properties (version, version_short, and
@@ -256,6 +256,9 @@ public final class OpenmrsConstants {
 	public static final String GLOBAL_PROPERTY_DEFAULT_THEME = "default_theme";
 	
 	public static final String GLOBAL_PROPERTY_APPLICATION_NAME = "application.name";
+	
+	//BFT
+	public static final String GLOBAL_PROPERTY_LOGIN_IAGREETEXT = "login.iagree";
 	
 	/**
 	 * Array of all core global property names that represent comma-separated lists of
@@ -963,6 +966,9 @@ public final class OpenmrsConstants {
 		
 		props.add(new GlobalProperty(GLOBAL_PROPERTY_APPLICATION_NAME, "OpenMRS",
 		        "The name of this application, as presented to the user, for example on the login and welcome pages."));
+		//		BFT
+		props.add(new GlobalProperty(GLOBAL_PROPERTY_LOGIN_IAGREETEXT, "I agree to BFT's Terms of Use.",
+		        "This text will be prompted before the home page."));
 		
 		props
 		        .add(new GlobalProperty(

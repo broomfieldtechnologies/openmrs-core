@@ -1,0 +1,276 @@
+<htmlform>
+
+  <macros>
+    paperFormId = (Fill this in)
+    headerColor =#009d8e
+    fontOnHeaderColor = white
+    lightgrey=#e0e0e0
+    lightblue=#95ADCA
+    darkblue=#4444ff
+  </macros>
+  
+  <style>
+    .section {
+	border: 1px solid $headerColor;
+	padding: 4px;
+	text-align: left;
+	margin-bottom: 1em;
+    }
+    .sectionHeader {
+	background-color: $headerColor;
+	color: $fontOnHeaderColor;
+	display: block;
+	padding: 4px;
+	font-weight: bold;
+    }
+    table.baseline-aligned td {
+	vertical-align: baseline;
+    }
+  </style>
+  
+    <div class="hidden" id="encounter-details" sectionTag="section" headerStyle="title" headerLabel="Encounter Details">
+        <fieldset>
+            <legend>When?</legend>
+            <label>When?</label>
+
+            <encounterDate default="now" showTime="false"/>
+        </fieldset>
+
+        <fieldset>
+            <legend>Who?</legend>
+            <label>Who?</label>
+
+            <encounterProviderAndRole default="currentUser" encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f" required="true"/>
+        </fieldset>
+
+        <fieldset>
+            <legend>Where?</legend>
+            <label>Where?</label>
+
+            <encounterLocation default="SessionAttribute:emrContext.sessionLocationId"/>
+    
+        </fieldset>
+    </div>
+
+
+  <span style="float:right">Paper Form ID: $paperFormId</span>
+  <h2>GENERAL EXAMINATION FORM</h2>
+    <!--PATIENT DETAILS:
+    <br/> NAME: <lookup expression="patient.personName"/> 
+    <br/> GENDER: <lookup expression="patient.gender"/> 
+    <br/> AGE: <lookup expression="patient.age"/> 
+    -->
+
+    <section headerLabel="ATTENDING CONSULTANT">
+        <table class="baseline-aligned">
+        <tr>
+        <td><encounterProvider/></td>
+        </tr>
+        </table>
+    </section>
+
+    <section headerLabel="PERSONAL DATA">
+        <br/> 
+        <obs conceptId="1054" labelText="Civil Status"/> <br/> <br/>
+        <obs conceptId="166046" labelText="Food Habit"/> <br/> <br/>
+        <obs conceptId="166050" labelText="Alcohol Consumption"/> <br/> <br/> 
+        <obs conceptId="166053" labelText="Smoking"/> <br/> <br/> 
+        <obs conceptId="166054" labelText="Substance Abuse"/> <br/> <br/> 
+        <obs conceptId="166055" labelText="Hobbies"/> <br/> <br/> 
+    </section>
+
+    <section headerLabel="COMPLAINT OF THE PRESENT ILLNESS (SYMPTOMS)">
+        <div style="background-color: $lightgrey" align="left"><b>PAIN</b></div>
+        <br/> 
+        <obs conceptId="166056" labelText="Site"/> <br/> <br/> 
+        <obs conceptId="166008" labelText="Duration"/> <br/> <br/> 
+        <obs conceptId="166057" labelText="Onset"/> <br/> <br/>
+        <obs conceptId="166058" labelText="Progression"/> <br/> <br/>
+        <obs conceptId="166059" labelText="Character"/> <br/> <br/>
+        <obs conceptId="166060" labelText="Radiation"/> <br/> <br/>
+        <obs conceptId="166061" labelText="Aggravating Factors"/> <br/> <br/> 
+        <obs conceptId="166062" labelText="Relieving Factors"/> <br/> <br/> 
+        <obs conceptId="166063" labelText="Associated Factors"/> <br/> <br/>
+        <obs conceptId="166064" labelText="Night Pain"/> <br/> <br/>
+        <obs conceptId="166065" labelText="Diurnal Variation"/> <br/> <br/>
+        <obs conceptId="166066" labelText="Visual Analogue Scale(VAS) Score"/> <br/> <br/>
+
+        <div style="background-color: $lightgrey" align="left"><b>SWELLING</b></div>
+        <br/> 
+        <obs conceptId="166056" labelText="Site"/> <br/> <br/> 
+        <obs conceptId="166008" labelText="Duration"/> <br/> <br/> 
+        <obs conceptId="166057" labelText="Onset"/> <br/> <br/>
+        <obs conceptId="166058" labelText="Progression"/> <br/> <br/>
+        <obs conceptId="166061" labelText="Aggravating Factors"/> <br/> <br/> 
+        <obs conceptId="166062" labelText="Relieving Factors"/> <br/> <br/> 
+        <obs conceptId="166063" labelText="Associated Factors"/> <br/> <br/>
+
+        <div style="background-color: $lightgrey" align="left"><b>DEFORMITY</b></div>
+        <br/>
+        <obs conceptId="166008" labelText="Duration"/> <br/> <br/> 
+        <obs conceptId="166057" labelText="Onset"/> <br/> <br/>
+        <obs conceptId="166058" labelText="Progression"/> <br/> <br/>
+        <obs conceptId="166063" labelText="Associated Factors"/> <br/> <br/>
+        <obs conceptId="166067" labelText="Limping" style="no_yes"/> <br/> <br/>
+
+        <div style="background-color: $lightgrey" align="left"><b>ACTIVITY OF DAILY ROUTINE</b></div>
+        <br/>
+        <obs conceptId="166075" answerConceptId="166068" answerLabel="Sitting"/> <br/>
+        <obs conceptId="166075" answerConceptId="166069" answerLabel="Walking"/> <br/>
+        <obs conceptId="166075" answerConceptId="166070" answerLabel="Standing"/> <br/>
+        <obs conceptId="166075" answerConceptId="166071" answerLabel="Running"/> <br/>
+        <obs conceptId="166075" answerConceptId="166072" answerLabel="Climbing Stairs"/> <br/>
+        <obs conceptId="166075" answerConceptId="166073" answerLabel="Squatting"/> <br/>
+        <obs conceptId="166075" answerConceptId="166074" answerLabel="Cross-legged"/> <br/> <br/>
+        
+        <div style="background-color: $lightgrey" align="left"><b>FEVER</b></div>
+        <br/>
+        <obs conceptId="166076" labelText="Duration"/> <br/> <br/>
+        <obs conceptId="166077" labelText="Onset"/> <br/> <br/>
+        Characteristics: <obs id="whatKind" conceptId="166079" answerConceptIds="1079,166078"/> <br/> <br/> 
+        <obs conceptId="166065" labelText="Diurnal Variation"/> <br/> <br/>
+
+        <div style="background-color: $lightgrey" align="left"><b>CONSTITUTIONAL SYMPTOMS</b></div>
+        <br/>
+        <obs conceptId="166082" answerConceptId="5980" answerLabel="Vomiting"/> <br/>
+        <obs conceptId="166082" answerConceptId="151" answerLabel="Abdominal Pain"/> <br/>
+        <obs conceptId="166082" answerConceptId="139084" answerLabel="Headache"/> <br/>
+        <obs conceptId="166082" answerConceptId="142412" answerLabel="Diarrhoea"/> <br/>
+        <obs conceptId="166082" answerConceptId="197" answerLabel="Dysentry"/> <br/>
+        <obs conceptId="166082" answerConceptId="996" answerLabel="Constipation"/> <br/>
+        <obs conceptId="166082" answerConceptId="166081" answerLabel="Lethargy"/> <br/>
+        <obs conceptId="166082" answerConceptId="140501" answerLabel="Fatigue"/> <br/>
+        <br/>
+
+        <div style="background-color: $lightgrey" align="left"><b>STIFFNESS/CONTRACTURE</b></div>
+        <br/> 
+        <obs conceptId="166056" labelText="Site"/> <br/> <br/> 
+        <obs conceptId="166057" labelText="Onset"/> <br/> <br/>
+        <obs conceptId="166058" labelText="Progression"/> <br/> <br/>
+        <obs conceptId="166065" labelText="Diurnal Variation"/> <br/> <br/> 
+        <obs conceptId="166083" labelText="Morning Stiffness"/> <br/> <br/> 
+        <obs conceptId="166084" labelText="Joint Involvement"/> <br/> <br/>
+
+        <div style="background-color: $lightgrey" align="left"><b>DISCHARGE WOUND</b></div>
+        <br/>
+        <obs conceptId="166008" labelText="Duration"/> <br/> <br/> 
+        <obs conceptId="166057" labelText="Onset"/> <br/> <br/>
+        <obs conceptId="166058" labelText="Progression"/> <br/> <br/>
+        <obs conceptId="166063" labelText="Associated Factors"/> <br/> <br/>
+
+        <div style="background-color: $lightgrey" align="left"><b>ABNORMAL MOBILITY</b></div>
+        <br/>
+        <obs conceptId="166008" labelText="Duration"/> <br/> <br/> 
+        <obs conceptId="166057" labelText="Onset"/> <br/> <br/>
+        <obs conceptId="166058" labelText="Progression"/> <br/> <br/>
+        <obs conceptId="166063" labelText="Associated Factors"/> <br/> <br/>
+        <obs conceptId="166092" answerConceptId="166085" answerLabel="Instability"/> <br/>
+        <obs conceptId="166092" answerConceptId="166086" answerLabel="Loosening"/> <br/>
+        <obs conceptId="166092" answerConceptId="166087" answerLabel="Snapping"/> <br/>
+        <obs conceptId="166092" answerConceptId="166088" answerLabel="Clicking Sound"/> <br/>
+        <obs conceptId="166092" answerConceptId="166089" answerLabel="Jerks"/> <br/>
+        <obs conceptId="166092" answerConceptId="166090" answerLabel="Twitches"/> <br/>
+        <obs conceptId="166092" answerConceptId="166091" answerLabel="Tremors"/> <br/> <br/>
+    </section>
+
+    <section headerLabel="HISTORICAL DATA"> 
+        <br/>
+        <obs conceptId="166093" labelText="History of Present Complaints" style="textarea" rows="10"/> <br/> <br/>
+        <obs conceptId="166094" labelText="Past History" rows="10"/> <br/> <br/>
+        <obs conceptId="166095" labelText="Drug History" rows="10"/> <br/> <br/>
+        <obs conceptId="166102" labelText="Family History" rows="10"/> <br/> <br/>         
+        <div style="background-color: $lightgrey" align="left"><b>Birth History</b></div>
+        <br/> 
+        <obs conceptId="166096" labelText="Date of Birth"/> <br/> <br/>
+        <obs conceptId="166101" style="radio" answerConceptIds="166097,166098" answerLabels="Normal, LSCS"/> <br/> <br/>
+        <obs conceptId="166101" style="radio" answerConceptIds="166099,166100" answerLabels="Single, Multiple"/> <br/> <br/> 
+        <obs conceptId="166105" labelText="Gravida "/>  
+        <obs conceptId="166106" labelText="Para "/> <br/> <br/> 
+        Assisted Delivery: <obs conceptId="166101" style="radio" answerConceptIds="166107,166108" answerLabels="Forceps, Vacuum"/> <br/> <br/> 
+        Baby: <obs conceptId="166101" style="radio" answerConceptIds="166109,166110" answerLabels="Cried, Not Cried"/> <br/> <br/>         
+        <obs conceptId="166101" style="radio" answerConceptIds="166111,166112" answerLabels="Incubator, Phototherapy"/> <br/> <br/> 
+        <obs conceptId="166113" labelText="Developmental Retardation"/> <br/> <br/>
+        <obs conceptId="166114" labelText="Neonatal Anomaly"/> <br/> <br/>
+
+        <div style="background-color: $lightgrey" align="left"><b>IMMUNISATION HISTORY</b></div>
+        <br/>
+        <obs conceptId="166012"/> <br/> <br/>
+
+        <div style="background-color: $lightgrey" align="left"><b>TREATMENT HISTORY</b></div>
+        <br/>
+        <obs conceptId="166115" labelText="Any Surgeries?"/> <br/> <br/>
+        <obs conceptId="166116" labelText="Any illness in the past other than orthopaedic?"/> <br/> <br/>
+
+
+        <div style="background-color: $lightgrey" align="left"><b>PRESENT TRAUMA HISTORY</b></div>
+        <br/>
+        <obs conceptId="165243" labelText="Date: "/> 
+        <obs conceptId="165244" labelText="Time: "/> <br/> <br/> 
+        <obs conceptId="166056" labelText="Place (Site):"/> <br/> <br/>
+        <obs conceptId="166122" style="radio" answerConceptIds="86,166117,176" answerLabels="RTA, Self-fall, Assault" /> <br/> <br/>
+        <obs conceptId="166122" style="radio" answerConceptIds="166118,166119" answerLabels="Known Person, Unknown Person" /> <br/> <br/>
+        <obs conceptId="166120" labelText="MLC:" style="no_yes"/> <br/> <br/>
+        <obs conceptId="166121" labelText=" Under Alcohol Influence:" style="no_yes"/> <br/> <br/>
+
+        <div style="background-color: $lightgrey" align="left"><b>DETAILS OF THE INJURY (HISTORY ONLY)</b></div>
+        <br/>
+        HEAD <br/> 
+        <obs conceptId="166124" answerConceptId="166123" answerLabel="Loss of Consciousness"/> <br/>
+        <obs conceptId="166124" answerConceptId="6037" answerLabel="Loss of Memory"/> <br/>
+        <obs conceptId="166124" answerConceptId="5980" answerLabel="Vomiting"/> <br/>
+        <obs conceptId="166124" answerConceptId="206" answerLabel="Seizures"/> <br/>
+
+        <br/>
+        FACE <br/> 
+        <obs conceptId="166128" answerConceptId="166125" answerLabel="Ear, Nose, Throat Bleed"/> <br/>
+        <obs conceptId="166128" answerConceptId="166126" answerLabel="Ecchymosis"/> <br/>
+        <obs conceptId="166128" answerConceptId="119222" answerLabel="Difficulty in opening eyes"/> <br/>
+        <obs conceptId="166128" answerConceptId="166127" answerLabel="Difficulty in opening mouth"/> <br/>
+
+        <br/>
+        NECK <br/> <obs conceptId="166131" answerConceptId="166129" answerLabel="Locking"/> <br/>
+        <obs conceptId="166131" answerConceptId="110598" answerLabel="Pain"/> <br/>
+        <obs conceptId="166131" answerConceptId="5170" answerLabel="Stiffness"/> <br/>
+        <obs conceptId="166131" answerConceptId="166130" answerLabel="Loss of function of upper/lower limbs"/> <br/>
+
+        <br/>
+        SPINE <br/> <obs conceptId="166133" answerConceptId="1026" answerLabel="Differential"/> <br/>
+        <obs conceptId="166133" answerConceptId="5135" answerLabel="Sensation (numbness)"/> <br/>
+        <obs conceptId="166133" answerConceptId="6004" answerLabel="Paraesthesia"/> <br/>
+        <obs conceptId="166133" answerConceptId="166132" answerLabel="Difficulties in bending forward"/> <br/>
+
+        <br/>
+        CHEST <br/> <obs conceptId="166134" answerConceptId="5960" answerLabel="Breathlessness"/> <br/>
+        <obs conceptId="166134" answerConceptId="136" answerLabel="Pain"/> <br/>
+
+        <br/>
+        ABDOMEN <br/> <obs conceptId="166138" answerConceptId="151" answerLabel="Pain"/> <br/>
+        <obs conceptId="166138" answerConceptId="166135" answerLabel="Distention"/> <br/>
+        <obs conceptId="166138" answerConceptId="5980" answerLabel="Vomiting"/> <br/>
+        <obs conceptId="166138" answerConceptId="142412" answerLabel="Loose Stools"/> <br/>
+        <obs conceptId="166138" answerConceptId="166136" answerLabel="Bleeding per Urethra"/> <br/>
+        <obs conceptId="166138" answerConceptId="166137" answerLabel="Bleeding per Anum"/> <br/>
+
+        <br/>
+        LONG BONES <br/> 
+        <obs conceptId="166139" answerConceptId="110598" answerLabel="Pain"/> <br/>
+        <obs conceptId="166139" answerConceptId="166092" answerLabel="Abnormal Mobility"/> <br/>
+        <obs conceptId="166139" answerConceptId="6001" answerLabel="Swelling"/> <br/><br/>
+
+        <div style="background-color: $lightgrey" align="left"><b>MENSTRUAL HISTORY</b></div>
+        <br/>
+        <obs conceptId="166145" style="radio" answerConceptIds="166140,5990" answerLabels="Menarche, Menopause"/> <br/> <br/> 
+        <obs conceptId="166141" labelText="Regular:" style="no_yes"/> <br/> <br/>
+        <obs conceptId="166142" labelText="Duration of Cycle:"/> <br/> <br/>
+        <obs conceptId="166145" style="radio" answerConceptIds="127,166143" answerLabels="Dysmenorrhoea, Oligomenorrhoea"/> <br/> <br/> 
+        <obs conceptId="166145" style="radio" answerConceptIds="166097,50" answerLabels="Child birth, Abortion"/> <br/> <br/> 
+        <obs conceptId="166144" labelText="Sterilisation Details:"/> <br/> <br/>
+
+    </section>
+
+    <submit submitClass="confirm right" submitCode="uicommons.saveForm" />
+
+    <ifMode mode="VIEW" include="false">
+        <button class="cancel"><uimessage code="uicommons.cancelForm"/></button>
+    </ifMode> 
+</htmlform>

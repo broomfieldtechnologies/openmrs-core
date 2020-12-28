@@ -788,6 +788,15 @@
 						</execution>
 					</executions>
 				</plugin>
+ 	<plugin>
+		<groupId>org.liquibase</groupId>
+		<artifactId>liquibase-maven-plugin</artifactId>
+		<version>3.6.3</version>
+<!-- 		<configuration>
+			<propertyFile>src/main/resources/liquibase.properties</propertyFile>
+			<promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+		</configuration>
+ -->	</plugin>
 				<plugin>
 					<groupId>org.eluder.coveralls</groupId>
 					<artifactId>coveralls-maven-plugin</artifactId>
