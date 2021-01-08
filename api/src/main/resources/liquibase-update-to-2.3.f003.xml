@@ -627,10 +627,12 @@ VALUES
 			</sql>
 	</changeSet>
 
-	<changeSet id="USS100-85-88-4" author="BFT">
+	<changeSet id="USS100-85-88-5" author="BFT">
 <sql>
-UPDATE `concept` SET `datatype_id`=3 WHERE `concept_id`=6001 AND `concept_id`=177 AND `concept_id`=159994;
-			</sql>
+UPDATE `concept` SET `datatype_id`=3 WHERE `concept_id`=6001;
+UPDATE `concept` SET `datatype_id`=3 WHERE `concept_id`=177;
+UPDATE `concept` SET `datatype_id`=3 WHERE `concept_id`=159994;
+</sql>
 	</changeSet>
 <!--	<include file="concept_inserts.sql" relativeToChangelogFile="true"/> -->
 </databaseChangeLog>
