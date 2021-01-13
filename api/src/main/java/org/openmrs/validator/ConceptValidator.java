@@ -173,8 +173,9 @@ public class ConceptValidator extends BaseCustomizableValidator implements Valid
 				
 				//find duplicate names for a non-retired concept
 				if (Context.getConceptService().isConceptNameDuplicate(nameInLocale)) {
-					throw new DuplicateConceptNameException("'" + nameInLocale.getName()
-					        + "' is a duplicate name in locale '" + conceptNameLocale.toString() + "'");
+					//throw new DuplicateConceptNameException("'" + nameInLocale.getName()
+					//        + "' is a duplicate name in locale '" + conceptNameLocale.toString() + "'");
+					continue;
 				}
 				
 				//
