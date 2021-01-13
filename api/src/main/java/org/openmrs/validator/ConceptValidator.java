@@ -191,8 +191,9 @@ public class ConceptValidator extends BaseCustomizableValidator implements Valid
 				//No duplicate names allowed for the same locale and concept, keep the case the same
 				//except for short names
 				if (!nameInLocale.isShort() && !validNamesFoundInLocale.add(nameInLocale.getName().toLowerCase())) {
-					throw new DuplicateConceptNameException("'" + nameInLocale.getName()
-					        + "' is a duplicate name in locale '" + conceptNameLocale.toString() + "' for the same concept");
+					//throw new DuplicateConceptNameException("'" + nameInLocale.getName()
+					//        + "' is a duplicate name in locale '" + conceptNameLocale.toString() + "' for the same concept");
+					continue;
 				}
 				
 				if (log.isDebugEnabled()) {
