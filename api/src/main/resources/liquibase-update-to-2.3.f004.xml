@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+<!-- This file contains all changesets that have been introduced on top of 
+	liquibase-update-to-2.0.xml exclusively. If you intend for a changeset to 
+	be backported to older releases, you must put such a changeset in the liquibase-update-to-2.0.xml, 
+	which have been used for older releases. -->
+
+<databaseChangeLog
+	logicalFilePath="liquibase-update-to-latest.xml"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="USS10040" author="BFT">
+           <preConditions onFail="MARK_RAN">
+
+                    <sqlCheck expectedResult="0">SELECT COUNT(*) FROM global_property WHERE property='login.forgotpassword.body';</sqlCheck>
+
+            </preConditions>
+            <comment>Updating Global Property Table</comment>
+			<sql>
+
+	INSERT INTO `global_property` (`property`, `property_value`, `description`, `uuid`, `datatype`, `datatype_config`, `preferred_handler`, `handler_config`, `date_changed`, `changed_by`)
+VALUES
+    ('login.forgotpassword.body','Dear Sir/Madam,%0A%0AThe details to reset the password:%0A%0AName:%0A%0AUser Name:%0A%0A%0A%0AHospital Name:%0A%0A%0A%0AWith thanks and regards,%0ABroomfield Technologies',NULL,'e884bfa6-08fa-43f8-a7f9-f72aa6b881cb',NULL,NULL,NULL,NULL,NULL,NULL),
+    ('login.forgotpassword.email','resetpassword@broomfieldtechnologies.com',NULL,'f822a2f0-f0fe-4a53-ab21-3b63c0a435a9',NULL,NULL,NULL,NULL,NULL,NULL),
+    ('login.forgotpassword.subject','Request to reset password',NULL,'5c9ab66c-e2b2-416a-bb9a-37cb05b9b9a5',NULL,NULL,NULL,NULL,NULL,NULL),
+    ('login.newhospitalrequest.body','Dear Sir/Madam,%0A%0AThe details to enable a new hospital login:%0A%0AName:%0A%0AAddress:%0A%0A%0A%0ASpecialization Needed:%0A%0A%0A%0AWith thanks and regards,%0ABroomfield Technologies',NULL,'7356ca36-70c5-4a2d-809c-961b57ca1502',NULL,NULL,NULL,NULL,NULL,NULL),
+    ('login.newhospitalrequest.email','newhospitalrequest@broomfieldtechnologies.com',NULL,'fc6b184d-f4a6-4825-98d1-c649951ecd65',NULL,NULL,NULL,NULL,NULL,NULL),
+    ('login.newhospitalrequest.subject','Request for new Hospital Login',NULL,'cb1c1e15-c502-45f3-884a-bffc90243584',NULL,NULL,NULL,NULL,NULL,NULL);
+			</sql>
+	</changeSet>
+</databaseChangeLog>	
