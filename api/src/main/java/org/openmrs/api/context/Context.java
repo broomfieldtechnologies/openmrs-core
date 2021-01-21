@@ -663,19 +663,19 @@ public class Context {
 	}
 
 	
-	//sindhu
+	//US10060
 	public static Integer getAuthUserId() {
-		User u1;
-		Integer x=0;
-		u1=getUserContext().getAuthenticatedUser();
-		if(u1!=null) {
-			 x=u1.getUserId();
+		User user;
+		Integer userId = 0;
+		user=getUserContext().getAuthenticatedUser();
+		if(user!=null) {
+			 userId = user.getUserId();
 			
 		}
-		return x;
+		return userId;
 		
 	}
-	//sindhu
+	//US10060
 	/**
 	 * @return true if user has been authenticated in this context
 	 */

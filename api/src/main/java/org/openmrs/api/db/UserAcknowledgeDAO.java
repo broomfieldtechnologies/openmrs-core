@@ -7,8 +7,16 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
+
+//US100
+
+//
+//
+
 package org.openmrs.api.db;
 
+//US10060
+import java.util.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.UserAcknowledge;
@@ -22,6 +30,10 @@ public interface UserAcknowledgeDAO {
 	
 	public void setSessionFactory(SessionFactory sessionFactory);
 	
-	public UserAcknowledge saveUserAcknowledge(UserAcknowledge userAcknowledge) throws DAOException;
+	public UserAcknowledge saveUserAcknowledge(Integer id, int intervalValue) throws DAOException;
+	
+	public Date checkLastLogin(Integer id) throws DAOException;
+	
+	public boolean checkExsisting(Integer id) throws DAOException;
 	
 }
