@@ -173,8 +173,9 @@ public class ConceptValidator extends BaseCustomizableValidator implements Valid
 				
 				//find duplicate names for a non-retired concept
 				if (Context.getConceptService().isConceptNameDuplicate(nameInLocale)) {
-					throw new DuplicateConceptNameException("'" + nameInLocale.getName()
-					        + "' is a duplicate name in locale '" + conceptNameLocale.toString() + "'");
+					//throw new DuplicateConceptNameException("'" + nameInLocale.getName()
+					//        + "' is a duplicate name in locale '" + conceptNameLocale.toString() + "'");
+					continue;
 				}
 				
 				//
@@ -190,8 +191,9 @@ public class ConceptValidator extends BaseCustomizableValidator implements Valid
 				//No duplicate names allowed for the same locale and concept, keep the case the same
 				//except for short names
 				if (!nameInLocale.isShort() && !validNamesFoundInLocale.add(nameInLocale.getName().toLowerCase())) {
-					throw new DuplicateConceptNameException("'" + nameInLocale.getName()
-					        + "' is a duplicate name in locale '" + conceptNameLocale.toString() + "' for the same concept");
+					//throw new DuplicateConceptNameException("'" + nameInLocale.getName()
+					//        + "' is a duplicate name in locale '" + conceptNameLocale.toString() + "' for the same concept");
+					continue;
 				}
 				
 				if (log.isDebugEnabled()) {

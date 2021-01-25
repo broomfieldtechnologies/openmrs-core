@@ -274,6 +274,9 @@ public class PrivilegeConstants {
 	
 	public static final String PURGE_COHORTS = "Purge Cohorts";
 	
+	@AddOnStartup(description = "Able to view patient cohorts")
+	public static final String VIEW_PATIENT_COHORTS = "View Patient Cohorts";
+	
 	@AddOnStartup(description = "Able to add orders")
 	public static final String ADD_ORDERS = "Add Orders";
 	

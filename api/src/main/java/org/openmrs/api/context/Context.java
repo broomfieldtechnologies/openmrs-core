@@ -47,6 +47,7 @@ import org.openmrs.api.OpenmrsService;
 import org.openmrs.api.OrderService;
 import org.openmrs.api.OrderSetService;
 import org.openmrs.api.PatientService;
+import org.openmrs.api.PatientSetService;
 import org.openmrs.api.PersonService;
 import org.openmrs.api.ProgramWorkflowService;
 import org.openmrs.api.ProviderService;
@@ -1409,5 +1410,12 @@ public class Context {
 	 */
 	public static boolean isUseSystemClassLoader() {
 		return getServiceContext().isUseSystemClassLoader();
+	}
+	
+	/**
+	 * @return patientset-related services
+	 */
+	public static PatientSetService getPatientSetService() {
+		return getServiceContext().getPatientSetService();
 	}
 }

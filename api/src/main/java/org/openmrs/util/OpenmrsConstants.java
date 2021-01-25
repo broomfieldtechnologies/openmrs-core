@@ -44,9 +44,11 @@ import org.slf4j.LoggerFactory;
 public final class OpenmrsConstants {
 	
 	private static final Logger log = LoggerFactory.getLogger(OpenmrsConstants.class);
-	
+	public static final String GLOBAL_PROPERTY_STANDARD_DRUG_REGIMENS = "dashboard.regimen.standardRegimens";
+
 	public static String KEY_OPENMRS_APPLICATION_DATA_DIRECTORY = "OPENMRS_APPLICATION_DATA_DIRECTORY";
-	
+	public static final int ORDERTYPE_DRUG = 2;
+
 	/**
 	 * This is the hard coded primary key of the concept class for DRUG. This has to be done because
 	 * some logic in the API acts on this concept class
@@ -1117,6 +1119,54 @@ public final class OpenmrsConstants {
 		props.add(new GlobalProperty(GP_LOGIN_URL, LOGIN_URL,
 			"Responsible for defining the Authentication URL "));
 		props.addAll(ModuleFactory.getGlobalProperties());
+		String standardRegimens = "<list>" + "  <regimenSuggestion>" + "    <drugComponents>" + "      <drugSuggestion>"
+		        + "        <drugId>2</drugId>" + "        <dose>1</dose>" + "        <units>tab(s)</units>"
+		        + "        <frequency>2/day x 7 days/week</frequency>" + "        <instructions></instructions>"
+		        + "      </drugSuggestion>" + "    </drugComponents>"
+		        + "    <displayName>3TC + d4T(30) + NVP (Triomune-30)</displayName>"
+		        + "    <codeName>standardTri30</codeName>" + "    <canReplace>ANTIRETROVIRAL DRUGS</canReplace>"
+		        + "  </regimenSuggestion>" + "  <regimenSuggestion>" + "    <drugComponents>" + "      <drugSuggestion>"
+		        + "        <drugId>3</drugId>" + "        <dose>1</dose>" + "        <units>tab(s)</units>"
+		        + "        <frequency>2/day x 7 days/week</frequency>" + "        <instructions></instructions>"
+		        + "      </drugSuggestion>" + "    </drugComponents>"
+		        + "    <displayName>3TC + d4T(40) + NVP (Triomune-40)</displayName>"
+		        + "    <codeName>standardTri40</codeName>" + "    <canReplace>ANTIRETROVIRAL DRUGS</canReplace>"
+		        + "  </regimenSuggestion>" + "  <regimenSuggestion>" + "    <drugComponents>" + "      <drugSuggestion>"
+		        + "        <drugId>39</drugId>" + "        <dose>1</dose>" + "        <units>tab(s)</units>"
+		        + "        <frequency>2/day x 7 days/week</frequency>" + "        <instructions></instructions>"
+		        + "      </drugSuggestion>" + "      <drugSuggestion>" + "        <drugId>22</drugId>"
+		        + "        <dose>200</dose>" + "        <units>mg</units>"
+		        + "        <frequency>2/day x 7 days/week</frequency>" + "        <instructions></instructions>"
+		        + "      </drugSuggestion>" + "    </drugComponents>" + "    <displayName>AZT + 3TC + NVP</displayName>"
+		        + "    <codeName>standardAztNvp</codeName>" + "    <canReplace>ANTIRETROVIRAL DRUGS</canReplace>"
+		        + "  </regimenSuggestion>" + "  <regimenSuggestion>" + "    <drugComponents>"
+		        + "      <drugSuggestion reference=\"../../../regimenSuggestion[3]/drugComponents/drugSuggestion\"/>"
+		        + "      <drugSuggestion>" + "        <drugId>11</drugId>" + "        <dose>600</dose>"
+		        + "        <units>mg</units>" + "        <frequency>1/day x 7 days/week</frequency>"
+		        + "        <instructions></instructions>" + "      </drugSuggestion>" + "    </drugComponents>"
+		        + "    <displayName>AZT + 3TC + EFV(600)</displayName>" + "    <codeName>standardAztEfv</codeName>"
+		        + "    <canReplace>ANTIRETROVIRAL DRUGS</canReplace>" + "  </regimenSuggestion>" + "  <regimenSuggestion>"
+		        + "    <drugComponents>" + "      <drugSuggestion>" + "        <drugId>5</drugId>"
+		        + "        <dose>30</dose>" + "        <units>mg</units>"
+		        + "        <frequency>2/day x 7 days/week</frequency>" + "        <instructions></instructions>"
+		        + "      </drugSuggestion>" + "      <drugSuggestion>" + "        <drugId>42</drugId>"
+		        + "        <dose>150</dose>" + "        		<units>mg</units>"
+		        + "        <frequency>2/day x 7 days/week</frequency>" + "        <instructions></instructions>"
+		        + "      </drugSuggestion>"
+		        + "      <drugSuggestion reference=\"../../../regimenSuggestion[4]/drugComponents/drugSuggestion[2]\"/>"
+		        + "    </drugComponents>" + "    <displayName>d4T(30) + 3TC + EFV(600)</displayName>"
+		        + "    <codeName>standardD4t30Efv</codeName>" + "    <canReplace>ANTIRETROVIRAL DRUGS</canReplace>"
+		        + "  </regimenSuggestion>" + "  <regimenSuggestion>" + "    <drugComponents>" + "      <drugSuggestion>"
+		        + "        <drugId>6</drugId>" + "        <dose>40</dose>" + "        <units>mg</units>"
+		        + "        <frequency>2/day x 7 days/week</frequency>" + "        <instructions></instructions>"
+		        + "      </drugSuggestion>"
+		        + "      <drugSuggestion reference=\"../../../regimenSuggestion[5]/drugComponents/drugSuggestion[2]\"/>"
+		        + "      <drugSuggestion reference=\"../../../regimenSuggestion[4]/drugComponents/drugSuggestion[2]\"/>"
+		        + "    </drugComponents>" + "    <displayName>d4T(40) + 3TC + EFV(600)</displayName>"
+		        + "    <codeName>standardD4t40Efv</codeName>" + "    <canReplace>ANTIRETROVIRAL DRUGS</canReplace>"
+		        + "  </regimenSuggestion>" + "</list>";
+		props.add(new GlobalProperty(GLOBAL_PROPERTY_STANDARD_DRUG_REGIMENS, standardRegimens,
+		        "XML description of standard drug regimens, to be shown as shortcuts on the dashboard regimen entry tab"));
 		
 		return props;
 	}

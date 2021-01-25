@@ -39,6 +39,7 @@ import org.openmrs.PatientIdentifierType.UniquenessBehavior;
 import org.openmrs.Person;
 import org.openmrs.PersonAttribute;
 import org.openmrs.PersonName;
+import org.openmrs.api.LocationService;
 import org.openmrs.api.context.Context;
 import org.openmrs.api.db.DAOException;
 import org.openmrs.api.db.PatientDAO;
@@ -748,6 +749,9 @@ public class HibernatePatientDAO implements PatientDAO {
 	
 	public List<Patient> findPatients(String query, boolean includeVoided, Integer start, Integer length){
 		Integer tmpStart = start;
+		LocationService locationService = Context.getLocationService();
+		String enterpriseId = locationService.getEnterpriseForLoggedinUser();
+		
 		if (tmpStart == null) {
 			tmpStart = 0;
 		}
@@ -811,7 +815,17 @@ public class HibernatePatientDAO implements PatientDAO {
 			personAttributes.getList().forEach(personAttribute -> patients.add(getPatient((Integer) personAttribute[0])));
 		}
 
-		return patients;
+		List<Patient> patientsOfEnterprise = new LinkedList<>();
+		
+		for (Patient patient : patients) {
+			if ((patient.getPerson().getAttribute("Enterprise") != null ) &&
+					(patient.getPerson().getAttribute("Enterprise").getValue()).equals(enterpriseId)) {
+				patientsOfEnterprise.add(patient);
+			}
+		}
+		Collections.reverse(patientsOfEnterprise);
+		
+		return patientsOfEnterprise;
 	}
 	private LuceneQuery<PatientIdentifier> getPatientIdentifierLuceneQuery(String query, List<PatientIdentifierType> identifierTypes, boolean matchExactly) {
 		LuceneQuery<PatientIdentifier> patientIdentifierLuceneQuery = getPatientIdentifierLuceneQuery(query, matchExactly);

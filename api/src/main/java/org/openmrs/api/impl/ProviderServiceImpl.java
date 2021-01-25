@@ -9,11 +9,14 @@
  */
 package org.openmrs.api.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 import org.openmrs.Person;
+import org.openmrs.PersonAttribute;
+import org.openmrs.PersonAttributeType;
 import org.openmrs.Provider;
 import org.openmrs.ProviderAttribute;
 import org.openmrs.ProviderAttributeType;
@@ -63,6 +66,29 @@ public class ProviderServiceImpl extends BaseOpenmrsService implements ProviderS
 	@Transactional(readOnly = true)
 	public List<Provider> getAllProviders(boolean includeRetired) {
 		return dao.getAllProviders(includeRetired);
+	}
+	
+	/**
+	 * @see org.openmrs.api.ProviderService#getAllProviders(boolean)
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<Provider> getAllProvidersForEnterprise(boolean includeRetired,
+			String enterpriseGuid) {
+		//TODO BFT this is a temporary solution
+		//this filter for providers for an enterprise should be done using a hql query
+		List<Provider> allProviders =  dao.getAllProviders(includeRetired);
+		List<Provider> providersForEnterprise = new ArrayList<Provider>();
+		PersonAttributeType pat = Context.getPersonService().getPersonAttributeTypeByName("Enterprise");
+		for (Provider provider: allProviders) {
+			if (provider.getPerson().getAttribute(pat) != null) {
+				PersonAttribute paForEnterprise = provider.getPerson().getAttribute(pat);
+				if (paForEnterprise.getValue().equals(enterpriseGuid)) {
+					providersForEnterprise.add(provider);
+				}
+			}
+		}
+		return providersForEnterprise;
 	}
 	
 	/**

@@ -113,24 +113,25 @@ public class LocationServiceImpl extends BaseOpenmrsService implements LocationS
 	@Override
 	@Transactional(readOnly = true)
 	public Location getDefaultLocation() throws APIException {
-		Location location = null;
-		String locationGP = Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GLOBAL_PROPERTY_DEFAULT_LOCATION_NAME);
+		/*
+		 * Location location = null;
+         *
+		 * String locationGP = Context.getAdministrationService().getGlobalProperty(
+		 * OpenmrsConstants.GLOBAL_PROPERTY_DEFAULT_LOCATION_NAME);
+		 * 
+		 * if (StringUtils.hasText(locationGP)) { location =
+		 * Context.getLocationService().getLocation(locationGP); }
+		 * 
+		 * if (location == null) { location = getDefaultLocation(location, locationGP);
+		 * }
+		 * 
+		 * // If neither exist, get the first available location if (location == null) {
+		 * location = Context.getLocationService().getLocation(1); }
+		 */
 		
-		if (StringUtils.hasText(locationGP)) {
-			location = Context.getLocationService().getLocation(locationGP);
-		}
-
-		if (location == null) {
-			location = getDefaultLocation(location, locationGP);
-		}
+		List<Location> locations = this.getAllLocationsForEnterpriseId();
 		
-		// If neither exist, get the first available location
-		if (location == null) {
-			location = Context.getLocationService().getLocation(1);
-		}
-		
-		return location;
+		return locations.get(0);
 	}
 
 	private Location getDefaultLocation(Location location, String locationGP) {
@@ -258,6 +259,22 @@ public class LocationServiceImpl extends BaseOpenmrsService implements LocationS
 			for (LocationTag t : tags) {
 				if (loc.getTags().contains(t) && !locations.contains(loc)) {
 					locations.add(loc);
+				}
+			}
+		}
+		
+		return locations;
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Location> getLocationsHavingAnyTagForEnterpriseGuid(List<LocationTag> tags, String enterpriseGuid) throws APIException {
+		List<Location> locations = new ArrayList<>();
+		
+		for (Location loc : dao.getAllLocationsByEnterpriseId(false, enterpriseGuid)) {
+			for (LocationTag t : tags) {
+				if (loc.getTags().contains(t) && !locations.contains(loc)) {
+					locations.add(loc); 
 				}
 			}
 		}
