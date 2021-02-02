@@ -42,4 +42,19 @@ VALUES
     ('login.newhospitalrequest.subject','Request for new Hospital Login',NULL,'cb1c1e15-c502-45f3-884a-bffc90243584',NULL,NULL,NULL,NULL,NULL,NULL);
 			</sql>
 	</changeSet>
+
+	<changeSet id="US10105" author="BFT">
+           <preConditions onFail="MARK_RAN">
+
+                    <sqlCheck expectedResult="0">SELECT COUNT(*) FROM person_attribute_type WHERE name='E-mail ID';</sqlCheck>
+
+            </preConditions>
+            <comment>Updating Person Attribute Type</comment>
+			<sql>
+INSERT INTO `person_attribute_type` (`name`, `description`, `format`, `foreign_key`, `searchable`, `creator`, `date_created`, `changed_by`, `date_changed`, `retired`, `retired_by`, `date_retired`, `retire_reason`, `edit_privilege`, `sort_weight`, `uuid`)
+VALUES
+('E-mail ID','Email ID of the person','java.lang.String',NULL,0,1,'2021-01-26 10:45:07',NULL,NULL,0,NULL,NULL,NULL,NULL,20,'a01f0840-b3d7-4986-a41e-38deebb79303');
+			</sql>
+	</changeSet>
+
 </databaseChangeLog>	
