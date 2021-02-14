@@ -45,19 +45,16 @@ UserAcknowledgeDAO userAcknowledgeDAO;
 	
 	@Override
 	public UserAcknowledge saveUserAcknowledge(Integer id, int intervalValue) throws APIException {
-		
 		return userAcknowledgeDAO.saveUserAcknowledge(id, intervalValue);
 	}
 	
 	@Override
 	public Date checkLastLogin(Integer id) throws APIException {
-		
 		return userAcknowledgeDAO.checkLastLogin(id);
 	}
 	
 	@Override
 	public boolean checkExsisting(Integer id) throws APIException {
-		
 		return userAcknowledgeDAO.checkExsisting(id);
 	}
 	

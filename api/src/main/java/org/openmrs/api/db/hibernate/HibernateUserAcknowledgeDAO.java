@@ -10,6 +10,7 @@
 
 package org.openmrs.api.db.hibernate;
 
+import org.openmrs.api.AdministrationService;
 //US10060
 import org.openmrs.api.context.Context;
 import org.openmrs.api.db.UserAcknowledgeDAO;
@@ -46,6 +47,7 @@ public class HibernateUserAcknowledgeDAO implements UserAcknowledgeDAO {
 	 * @param sessionFactory
 	 */
 	//@Autowired
+	
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
@@ -53,75 +55,43 @@ public class HibernateUserAcknowledgeDAO implements UserAcknowledgeDAO {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
-	
-	
 
 	@Override
 	public UserAcknowledge saveUserAcknowledge(Integer authUserId, int intervalValue) {
 		
-		
 		Date loginDate = new Date();
-		
 		Date lastLoginDate = null;
-		
 		Query query = null;
-		
+		AdministrationService adminService;
 		String sql="select * from user_acknowledge where user_id= :userId";
-		
-	
 		query = sessionFactory.getCurrentSession().createSQLQuery(sql);
 		query.setInteger("userId", authUserId);
-		
-		
 		UserAcknowledge userser = null;
 		
 		if((query.uniqueResult()==null)) {
-			
 			UserAcknowledge userAcknowledge=new UserAcknowledge();
 			userAcknowledge.setUserId(authUserId);
 			userAcknowledge.setLoginDate(loginDate);
-			
 			sessionFactory.getCurrentSession().saveOrUpdate(userAcknowledge);
 		}
 		else {
-			
-			
-			
 			if(query.uniqueResult()!=null) {
-			
-				
 				Query querys = sessionFactory.getCurrentSession().createQuery("from UserAcknowledge ua where ua.userId= :authUser").setInteger("authUser", authUserId);
-				
 				List<UserAcknowledge> userAcknowledgeList = querys.list();
-			
-		 	
 				userser = userAcknowledgeList.get(0);
-			
 				lastLoginDate=userser.getLoginDate();
-				
+				adminService = Context.getAdministrationService();
+				String userAckTimeLimit = adminService.getGlobalProperty("UserAcknowledgeTimeLimit");
+				int userAcknowledgeInterval = Integer.parseInt(userAckTimeLimit);
 				long interval=0;
-				
 				interval = (loginDate.getTime() - lastLoginDate.getTime())/86400000;
-				
-				log.error("inteval inside else:" +interval);
-				
-				if (interval > 30) {
-					
-					
-					String sqlUpdate = "update user_acknowledge set login_date = :logd1 where user_id = :useridauth";
-					sessionFactory.getCurrentSession().createSQLQuery(sqlUpdate).setParameter("logd1", loginDate).setParameter("useridauth", authUserId).executeUpdate();
-					
-					
-					
-				}}
-				
+					if (interval > userAcknowledgeInterval) {
+						String sqlUpdate = "update user_acknowledge set login_date = :logd1 where user_id = :useridauth";
+						sessionFactory.getCurrentSession().createSQLQuery(sqlUpdate).setParameter("logd1", loginDate).setParameter("useridauth", authUserId).executeUpdate();
+					}
+			}	
 			
 		}
-		
-		
-		
-		
 		return userser;
 		 
 	}
@@ -132,33 +102,20 @@ public class HibernateUserAcknowledgeDAO implements UserAcknowledgeDAO {
 		
 		UserAcknowledge userAcknowledge = null;
 		Date lastLoginDate = null;
-		
-				
-	
 		Query userIdQuery = sessionFactory.getCurrentSession().createQuery("from UserAcknowledge ua where ua.userId= :authUser").setInteger("authUser", authUserId);
 		
 		if(userIdQuery.uniqueResult()!=null) {
-		
-		List<UserAcknowledge> userAcknowledgeList = userIdQuery.list();
-		
-	 	
-		userAcknowledge=userAcknowledgeList.get(0);
-		
-		lastLoginDate=userAcknowledge.getLoginDate();
-		
+			List<UserAcknowledge> userAcknowledgeList = userIdQuery.list();
+			userAcknowledge=userAcknowledgeList.get(0);
+			lastLoginDate=userAcknowledge.getLoginDate();
 		} 
-		
-		return lastLoginDate;
+	return lastLoginDate;
 	}
-	
-	
-	
 	
 	@Override
 	public boolean checkExsisting(Integer authUserId) {
 		
 		boolean checkExsistingFlag = false;
-		
 		Query checkExsistingQuery = sessionFactory.getCurrentSession().createQuery("from UserAcknowledge ua where ua.userId= :authUser").setInteger("authUser", authUserId);
 		
 		if(checkExsistingQuery.uniqueResult()!=null) {
