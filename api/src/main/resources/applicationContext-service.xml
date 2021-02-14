@@ -93,11 +93,7 @@
         <property name="personService"><ref bean="personService"/></property>
         <property name="conceptService"><ref bean="conceptService"/></property>
         <property name="userService"><ref bean="userService"/></property>
-        
-        
-     <property name="userAcknowledgeService"><ref bean="userAcknowledgeService"/></property> 
-        
-        
+        <property name="userAcknowledgeService"><ref bean="userAcknowledgeService"/></property> 
         <property name="obsService"><ref bean="obsService"/></property>
         <property name="encounterService"><ref bean="encounterService"/></property>
         <property name="locationService"><ref bean="locationService"/></property>
@@ -131,12 +127,10 @@
 		<property name="sessionFactory"><ref bean="sessionFactory"/></property>
     <property name="userDAO"><ref bean="userDAO"/></property>
 	</bean>
-	
-	<bean id="userAcknowledgeDAO" class="org.openmrs.api.db.hibernate.HibernateUserAcknowledgeDAO">
-	<property name="sessionFactory"><ref bean="sessionFactory"/></property>	
+    <bean id="userAcknowledgeDAO" class="org.openmrs.api.db.hibernate.HibernateUserAcknowledgeDAO">
+	    <property name="sessionFactory"><ref bean="sessionFactory"/></property>	
 	</bean>
-	
-	<bean id="patientDAO" class="org.openmrs.api.db.hibernate.HibernatePatientDAO">
+    <bean id="patientDAO" class="org.openmrs.api.db.hibernate.HibernatePatientDAO">
 		<property name="sessionFactory"><ref bean="sessionFactory"/></property>	
 	</bean>
 	<bean id="personDAO" class="org.openmrs.api.db.hibernate.HibernatePersonDAO">
@@ -148,10 +142,7 @@
 	<bean id="userDAO" class="org.openmrs.api.db.hibernate.HibernateUserDAO">
 		<property name="sessionFactory"><ref bean="sessionFactory"/></property>	
 	</bean>
-	
-	
-	
-	<bean id="obsDAO" class="org.openmrs.api.db.hibernate.HibernateObsDAO">
+    <bean id="obsDAO" class="org.openmrs.api.db.hibernate.HibernateObsDAO">
 		<property name="sessionFactory"><ref bean="sessionFactory"/></property>	
 	</bean>
 	<bean id="encounterDAO" class="org.openmrs.api.db.hibernate.HibernateEncounterDAO">
