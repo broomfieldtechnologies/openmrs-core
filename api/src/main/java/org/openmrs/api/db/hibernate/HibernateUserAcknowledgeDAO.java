@@ -63,19 +63,19 @@ public class HibernateUserAcknowledgeDAO implements UserAcknowledgeDAO {
 		Date lastLoginDate = null;
 		Query query = null;
 		AdministrationService adminService;
-		String sql="select * from user_acknowledge where user_id= :userId";
+		String sql = "select * from user_acknowledge where user_id= :userId";
 		query = sessionFactory.getCurrentSession().createSQLQuery(sql);
 		query.setInteger("userId", authUserId);
 		UserAcknowledge userser = null;
 		
-		if((query.uniqueResult()==null)) {
+		if((query.uniqueResult() == null)) {
 			UserAcknowledge userAcknowledge=new UserAcknowledge();
 			userAcknowledge.setUserId(authUserId);
 			userAcknowledge.setLoginDate(loginDate);
 			sessionFactory.getCurrentSession().saveOrUpdate(userAcknowledge);
 		}
 		else {
-			if(query.uniqueResult()!=null) {
+			if(query.uniqueResult() != null) {
 				Query querys = sessionFactory.getCurrentSession().createQuery("from UserAcknowledge ua where ua.userId= :authUser").setInteger("authUser", authUserId);
 				List<UserAcknowledge> userAcknowledgeList = querys.list();
 				userser = userAcknowledgeList.get(0);
@@ -83,7 +83,7 @@ public class HibernateUserAcknowledgeDAO implements UserAcknowledgeDAO {
 				adminService = Context.getAdministrationService();
 				String userAckTimeLimit = adminService.getGlobalProperty("UserAcknowledgeTimeLimit");
 				int userAcknowledgeInterval = Integer.parseInt(userAckTimeLimit);
-				long interval=0;
+				long interval = 0;
 				interval = (loginDate.getTime() - lastLoginDate.getTime())/86400000;
 					if (interval > userAcknowledgeInterval) {
 						String sqlUpdate = "update user_acknowledge set login_date = :logd1 where user_id = :useridauth";
@@ -106,8 +106,8 @@ public class HibernateUserAcknowledgeDAO implements UserAcknowledgeDAO {
 		
 		if(userIdQuery.uniqueResult()!=null) {
 			List<UserAcknowledge> userAcknowledgeList = userIdQuery.list();
-			userAcknowledge=userAcknowledgeList.get(0);
-			lastLoginDate=userAcknowledge.getLoginDate();
+			userAcknowledge = userAcknowledgeList.get(0);
+			lastLoginDate = userAcknowledge.getLoginDate();
 		} 
 	return lastLoginDate;
 	}

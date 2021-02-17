@@ -18,29 +18,17 @@
 <hibernate-mapping package="org.openmrs">
 
     <class name="UserAcknowledge" table="user_acknowledge">
-<!--  read about it from ecache.xml comment by sindhu
-		<cache usage="read-write"/>
-		-->
+
 		<id name="id" type="java.lang.Integer" column="user_acknowledge_id">
 			<generator class="native"/>
-			
-			
-		</id>
+        </id>
 
         <property name="userId" type="java.lang.Integer"
                   column="user_id"/>
 
-        
-
         <property name="loginDate" type="java.util.Date" 
                   column="login_date"/>
 
-       
-
-        
-
-       
-
-    </class>
+     </class>
 
 </hibernate-mapping>

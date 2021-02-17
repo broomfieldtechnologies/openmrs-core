@@ -45,7 +45,7 @@ public class UserAcknowledge extends BaseOpenmrsData {
 	}
 	
 	public UserAcknowledge(Integer userId) {
-		this.userId=userId;
+		this.userId = userId;
 	}
 	
 	@Override

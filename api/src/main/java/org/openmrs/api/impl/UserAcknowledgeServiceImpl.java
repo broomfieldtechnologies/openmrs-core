@@ -40,9 +40,7 @@ UserAcknowledgeDAO userAcknowledgeDAO;
 	public void setUserAcknowledgeService(UserAcknowledgeService userAcknowledgeService) {
 		this.userAcknowledgeService = userAcknowledgeService;
 	}
-	
 
-	
 	@Override
 	public UserAcknowledge saveUserAcknowledge(Integer id, int intervalValue) throws APIException {
 		return userAcknowledgeDAO.saveUserAcknowledge(id, intervalValue);
