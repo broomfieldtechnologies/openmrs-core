@@ -507,18 +507,16 @@ public class ServiceContext implements ApplicationContextAware {
 	public void setUserService(UserService userService) {
 		setService(UserService.class, userService);
 	}
-	// by sindhu
+	
+	//US10060
 	public UserAcknowledgeService getUserAcknowledgeService() {
 		return getService(UserAcknowledgeService.class);
 	}
 	
-	/**
-	 * @param userService the userService to set
-	 */
 	public void setUserAcknowledgeService(UserAcknowledgeService userAcknowledgeService) {
 		setService(UserAcknowledgeService.class, userAcknowledgeService);
 	}
-	//end by sindhu
+	//US10060
 	/**
 	 * Gets the MessageSourceService used in the context.
 	 *

@@ -8,10 +8,10 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
+//US10060
 package org.openmrs.api.db.hibernate;
 
 import org.openmrs.api.AdministrationService;
-//US10060
 import org.openmrs.api.context.Context;
 import org.openmrs.api.db.UserAcknowledgeDAO;
 import org.openmrs.UserAcknowledge;
@@ -26,7 +26,6 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.*;
 import java.util.*;
 import org.openmrs.GlobalProperty;
-
 import java.util.Date;
 
 @Repository("userAcknowledgeService")

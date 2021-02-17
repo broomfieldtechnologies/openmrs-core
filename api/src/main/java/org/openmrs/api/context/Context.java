@@ -490,13 +490,11 @@ public class Context {
 		return getServiceContext().getUserService();
 	}
 
-	
-	//sindhu
-	
+	//US10060
 	public static UserAcknowledgeService getUserAcknowledgeService() {
 		return getServiceContext().getUserAcknowledgeService();
 	}
-	//sindhu
+	//US10060
 	
 	/**
 	 * @return order service
@@ -662,7 +660,6 @@ public class Context {
 
 		return getUserContext().getAuthenticatedUser();
 	}
-
 	
 	//US10060
 	public static Integer getAuthUserId() {
@@ -673,8 +670,7 @@ public class Context {
 			 userId = user.getUserId();
 			
 		}
-		return userId;
-		
+		return userId;	
 	}
 	//US10060
 	/**

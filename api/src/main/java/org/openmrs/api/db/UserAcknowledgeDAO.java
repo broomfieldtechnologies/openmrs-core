@@ -8,14 +8,9 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-//US100
-
-//
-//
-
+//US10060
 package org.openmrs.api.db;
 
-//US10060
 import java.util.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;

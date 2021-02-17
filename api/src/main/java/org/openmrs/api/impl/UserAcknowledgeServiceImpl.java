@@ -12,7 +12,6 @@
 package org.openmrs.api.impl;
 
 import org.openmrs.UserAcknowledge;
-
 import org.openmrs.api.APIException;
 import org.openmrs.api.UserAcknowledgeService;
 import org.openmrs.api.UserService;
