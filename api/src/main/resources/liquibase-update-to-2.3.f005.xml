@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+<!-- This file contains all changesets that have been introduced on top of 
+	liquibase-update-to-2.0.xml exclusively. If you intend for a changeset to 
+	be backported to older releases, you must put such a changeset in the liquibase-update-to-2.0.xml, 
+	which have been used for older releases. -->
+
+<databaseChangeLog
+	logicalFilePath="liquibase-update-to-latest.xml"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="US10098-1" author="BFT">
+           <preConditions onFail="MARK_RAN">
+
+                    <sqlCheck expectedResult="0">SELECT COUNT(*) FROM privilege WHERE privilege='orderentryui.drugOrders';</sqlCheck>
+
+            </preConditions>
+            <comment>Updating privilege Table</comment>
+			<sql>
+
+	INSERT INTO `privilege` (`privilege`, `description`, `uuid`)
+	VALUES
+	('App: orderentryui.drugOrders', 'able to enter drug orders', '66d03bf8-2ae1-470f-a684-0dfa163f6d1d');
+	
+	INSERT INTO `role_privilege` (`role`, `privilege`)
+	VALUES
+	('Provider', 'App: orderentryui.drugOrders');
+			</sql>
+	</changeSet>
+</databaseChangeLog>	
