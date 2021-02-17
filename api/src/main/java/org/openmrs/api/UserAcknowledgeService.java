@@ -8,15 +8,10 @@
  * graphic logo is a trademark of OpenMRS Inc.
  */
 
-
-//
-
+//US10060
 package org.openmrs.api;
 
-//US10060
-
 import org.openmrs.UserAcknowledge;
-
 import org.openmrs.api.db.*;
 import org.openmrs.annotation.Authorized;
 import org.springframework.transaction.annotation.Transactional;
