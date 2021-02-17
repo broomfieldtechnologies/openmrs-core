@@ -17,6 +17,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Please note that a corresponding table schema must be created in liquibase.xml.
@@ -38,7 +39,13 @@ public class UserAcknowledge extends BaseOpenmrsData {
 	@Column(name = "login_date")
 	private Date loginDate;
 	
+	// default constructor
+	@Autowired
 	public UserAcknowledge() {
+	}
+	
+	public UserAcknowledge(Integer userId) {
+		this.userId = userId;
 	}
 	
 	@Override
@@ -47,6 +54,7 @@ public class UserAcknowledge extends BaseOpenmrsData {
 	}
 	
 	@Override
+	@Autowired
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -54,7 +62,7 @@ public class UserAcknowledge extends BaseOpenmrsData {
 	public Integer getUserId() {
 		return userId;
 	}
-	
+	@Autowired
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
@@ -62,7 +70,7 @@ public class UserAcknowledge extends BaseOpenmrsData {
 	public Date getLoginDate() {
 		return loginDate;
 	}
-	
+	@Autowired
 	public void setLoginDate(Date loginDate) {
 		this.loginDate = loginDate;
 	}

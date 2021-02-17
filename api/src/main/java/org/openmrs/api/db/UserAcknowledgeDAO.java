@@ -7,35 +7,33 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
+
+//US100
+
+//
+//
+
 package org.openmrs.api.db;
 
+//US10060
+import java.util.*;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.openmrs.UserAcknowledge;
 import org.openmrs.api.db.hibernate.DbSession;
 import org.openmrs.api.db.hibernate.DbSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class UserAcknowledgeDAO {
+public interface UserAcknowledgeDAO {
 	
-	//	public UserAcknowledge saveUserAcknowledge(UserAcknowledge userAcknowledge) throws DAOException;
+	public SessionFactory getSessionFactory();
 	
-	@Autowired
-	DbSessionFactory sessionFactory;
+	public void setSessionFactory(SessionFactory sessionFactory);
 	
-	private DbSession getSession() {
-		return sessionFactory.getCurrentSession();
-	}
+	public UserAcknowledge saveUserAcknowledge(Integer id, int intervalValue) throws DAOException;
 	
-	//	public UserAcknowledge getUserAcknowledge(Integer userAcknowledgeId) throws DAOException;
+	public Date checkLastLogin(Integer id) throws DAOException;
 	
-	//	public void deleteUserAcknowledge(UserAcknowledge userAcknowledge) throws DAOException;
+	public boolean checkExsisting(Integer id) throws DAOException;
 	
-	public UserAcknowledge getUserAcknowledgeById(Integer id) {
-		return (UserAcknowledge) getSession().createCriteria(UserAcknowledge.class).add(Restrictions.eq("id", id)).uniqueResult();
-	}
-	
-	public UserAcknowledge saveUserAcknowledge(UserAcknowledge userAcknowledge) {
-		getSession().saveOrUpdate(userAcknowledge);
-		return userAcknowledge;
-	}
 }

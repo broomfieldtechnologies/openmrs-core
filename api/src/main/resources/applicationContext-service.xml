@@ -93,6 +93,7 @@
         <property name="personService"><ref bean="personService"/></property>
         <property name="conceptService"><ref bean="conceptService"/></property>
         <property name="userService"><ref bean="userService"/></property>
+        <property name="userAcknowledgeService"><ref bean="userAcknowledgeService"/></property> 
         <property name="obsService"><ref bean="obsService"/></property>
         <property name="encounterService"><ref bean="encounterService"/></property>
         <property name="locationService"><ref bean="locationService"/></property>
@@ -126,8 +127,10 @@
 		<property name="sessionFactory"><ref bean="sessionFactory"/></property>
     <property name="userDAO"><ref bean="userDAO"/></property>
 	</bean>
-	
-	<bean id="patientDAO" class="org.openmrs.api.db.hibernate.HibernatePatientDAO">
+    <bean id="userAcknowledgeDAO" class="org.openmrs.api.db.hibernate.HibernateUserAcknowledgeDAO">
+	    <property name="sessionFactory"><ref bean="sessionFactory"/></property>	
+	</bean>
+    <bean id="patientDAO" class="org.openmrs.api.db.hibernate.HibernatePatientDAO">
 		<property name="sessionFactory"><ref bean="sessionFactory"/></property>	
 	</bean>
 	<bean id="personDAO" class="org.openmrs.api.db.hibernate.HibernatePersonDAO">
@@ -139,7 +142,7 @@
 	<bean id="userDAO" class="org.openmrs.api.db.hibernate.HibernateUserDAO">
 		<property name="sessionFactory"><ref bean="sessionFactory"/></property>	
 	</bean>
-	<bean id="obsDAO" class="org.openmrs.api.db.hibernate.HibernateObsDAO">
+    <bean id="obsDAO" class="org.openmrs.api.db.hibernate.HibernateObsDAO">
 		<property name="sessionFactory"><ref bean="sessionFactory"/></property>	
 	</bean>
 	<bean id="encounterDAO" class="org.openmrs.api.db.hibernate.HibernateEncounterDAO">
@@ -200,6 +203,7 @@
 		<property name="sessionFactory"><ref bean="sessionFactory"/></property>
 	</bean>
 	
+	
 
 	<!--  **************************  SCHEDULER SERVICE  *************************  -->
 	<!-- 
@@ -230,6 +234,11 @@
 	<bean id="userServiceTarget" class="org.openmrs.api.impl.UserServiceImpl">
 		<property name="userDAO"><ref bean="userDAO"/></property>	
 	</bean>
+	 
+	<bean id="userAcknowledgeServiceTarget" class="org.openmrs.api.impl.UserAcknowledgeServiceImpl">
+		<property name="userAcknowledgeDAO"><ref bean="userAcknowledgeDAO"/></property>	
+	</bean>
+
 	<bean id="obsServiceTarget" class="org.openmrs.api.impl.ObsServiceImpl">
 		<property name="obsDAO"><ref bean="obsDAO"/></property>	
         <property name="handlers">
@@ -384,6 +393,16 @@
 		</property>
 		<property name="transactionAttributeSource"><ref local="transactionAttributeSource" /></property>
 	</bean>
+	
+	<bean id="userAcknowledgeService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager"><ref local="transactionManager"/></property>
+		<property name="target"><ref local="userAcknowledgeServiceTarget"/></property>
+		<property name="preInterceptors">
+			<ref local="serviceInterceptors" />
+		</property>
+		<property name="transactionAttributeSource"><ref local="transactionAttributeSource" /></property>
+	</bean>
+
 	<bean id="obsService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager"><ref local="transactionManager"/></property>
 		<property name="target"><ref local="obsServiceTarget"/></property>

@@ -7,45 +7,54 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
+
+//US10060
 package org.openmrs.api.impl;
 
 import org.openmrs.UserAcknowledge;
+
 import org.openmrs.api.APIException;
 import org.openmrs.api.UserAcknowledgeService;
 import org.openmrs.api.UserService;
 import org.openmrs.api.db.UserAcknowledgeDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Date;
 
 public class UserAcknowledgeServiceImpl extends BaseOpenmrsService implements UserAcknowledgeService {
 	
-	UserAcknowledgeDAO dao;
+UserAcknowledgeService userAcknowledgeService;	
+UserAcknowledgeDAO userAcknowledgeDAO;
 	
-	UserService userService;
-	
-	/**
-	 * Injected in moduleApplicationContext.xml
-	 */
-	public void setDao(UserAcknowledgeDAO dao) {
-		this.dao = dao;
+	public UserAcknowledgeDAO getUserAcknowledgeDAO() {
+		return userAcknowledgeDAO;
+	}
+
+	public void setUserAcknowledgeDAO(UserAcknowledgeDAO userAcknowledgeDAO) {
+		this.userAcknowledgeDAO = userAcknowledgeDAO;
 	}
 	
-	/**
-	 * Injected in moduleApplicationContext.xml
-	 */
-	public void setUserService(UserService userService) {
-		this.userService = userService;
+	public UserAcknowledgeService getUserAcknowledgeService() {
+		return userAcknowledgeService;
+	}
+	
+	public void setUserAcknowledgeService(UserAcknowledgeService userAcknowledgeService) {
+		this.userAcknowledgeService = userAcknowledgeService;
+	}
+
+	@Override
+	public UserAcknowledge saveUserAcknowledge(Integer id, int intervalValue) throws APIException {
+		return userAcknowledgeDAO.saveUserAcknowledge(id, intervalValue);
 	}
 	
 	@Override
-	public UserAcknowledge getUserAcknowledgeById(Integer id) throws APIException {
-		return dao.getUserAcknowledgeById(id);
+	public Date checkLastLogin(Integer id) throws APIException {
+		return userAcknowledgeDAO.checkLastLogin(id);
 	}
 	
 	@Override
-	public UserAcknowledge saveUserAcknowledge(UserAcknowledge userAcknowledge) throws APIException {
-		//		if (enterprise.getCreator() == null) {
-		//			enterprise.setCreator(userService.getUser(1));
-		//		}
-		
-		return dao.saveUserAcknowledge(userAcknowledge);
+	public boolean checkExsisting(Integer id) throws APIException {
+		return userAcknowledgeDAO.checkExsisting(id);
 	}
+	
+	
 }

@@ -7,23 +7,40 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
+
+
+//
+
 package org.openmrs.api;
 
+//US10060
+
 import org.openmrs.UserAcknowledge;
+
+import org.openmrs.api.db.*;
 import org.openmrs.annotation.Authorized;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.Date;
 
 public interface UserAcknowledgeService extends OpenmrsService {
 	
-	//	public void setUserAcknowledgeDAO(UserAcknowledgeDAO dao);
+	public UserAcknowledgeDAO getUserAcknowledgeDAO();
 	
-	//	public UserAcknowledge getUserAcknowledge(Integer userAcknowledgeId) throws APIException;
+	public void setUserAcknowledgeDAO(UserAcknowledgeDAO userAcknowledgeDAO);
+	
+	public void setUserAcknowledgeService(UserAcknowledgeService userAcknowledgeService);
+	
+	public UserAcknowledgeService getUserAcknowledgeService();
 	
 	@Authorized()
-	@Transactional(readOnly = true)
-	UserAcknowledge getUserAcknowledgeById(Integer id) throws APIException;
-	
-	//	@Authorized(EnterpriseConfig.MODULE_PRIVILEGE)
 	@Transactional
-	UserAcknowledge saveUserAcknowledge(UserAcknowledge userAcknowledge) throws APIException;
+	UserAcknowledge saveUserAcknowledge(Integer id, int intervalValue) throws APIException;
+	
+	@Authorized()
+	@Transactional
+	public Date checkLastLogin(Integer id) throws APIException;
+	
+	@Authorized()
+	@Transactional
+	boolean checkExsisting(Integer id) throws APIException;
 }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This Source Code Form is subject to the terms of the Mozilla Public License,
+    v. 2.0. If a copy of the MPL was not distributed with this file, You can
+    obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
+    the terms of the Healthcare Disclaimer located at http://openmrs.org/license.
+
+    Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+    graphic logo is a trademark of OpenMRS Inc.
+
+-->
+<!-- This file contains all changesets that have been introduced on top of 
+    liquibase-update-to-2.0.xml exclusively. If you intend for a changeset to 
+    be backported to older releases, you must put such a changeset in the liquibase-update-to-2.0.xml, 
+    which have been used for older releases. -->
+
+<databaseChangeLog
+    logicalFilePath="liquibase-update-to-latest.xml"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="US10060-1" author="BFT">
+           <preConditions onFail="MARK_RAN">
+
+                    <sqlCheck expectedResult="0">SELECT COUNT(*) FROM global_property WHERE property='UserAcknowledgeTimeLimit';</sqlCheck>
+
+            </preConditions>
+            <comment>Updating Global Property Table</comment>
+            <sql>
+
+    INSERT INTO `global_property` (`property`, `property_value`, `description`, `uuid`, `datatype`, `datatype_config`, `preferred_handler`, `handler_config`, `date_changed`, `changed_by`)
+VALUES
+    ('UserAcknowledgeTimeLimit', '30', 'UserAcknowledgeTimeLimit', '8d721c59-62c9-46cf-adce-4b817fcbf40e', NULL, NULL, NULL, NULL, NULL, NULL);
+            </sql>
+            
+            
+    </changeSet>
+    
+    
+      <changeSet id="US10060-2" author="BFT">
+           <preConditions onFail="MARK_RAN">
+
+                    <sqlCheck expectedResult="0">SELECT COUNT(*) FROM global_property WHERE property='UserAcknowledgeMessage';</sqlCheck>
+
+            </preConditions>
+            <comment>Updating Global Property Table</comment>
+            <sql>
+
+    INSERT INTO `global_property` (`property`, `property_value`, `description`, `uuid`, `datatype`, `datatype_config`, `preferred_handler`, `handler_config`, `date_changed`, `changed_by`)
+VALUES
+    ('UserAcknowledgeMessage', 'By using the HealMRS, you agree to the following terms and conditions as part of the Service Provider &amp; Licensing Agreement. &#x00A; 1.  HealMRS is a cloud-based software and service provider that gives access to the end user (Customer) to operate the software in order to create, modify, store, retrieve Patient data base.&#x00A;    2.  There are no software installations involved at User end hardware and hence no sale of Licensed software involved between the service provider and the user (Customer) &#x00A;   3.  HealMRS grants customer, a non-Transferrable right to use the software with the unique access credentials and the Customer is responsible for the protection of the such unique access credentials. Heal MRS is not responsible for the loss or leak of password and thereby tampering the data base, modifications of patience data, deletion of patience data, abuse of patient’s records, etc. &#x00A;    4.  HealMRS advices the Customer to change the access credentials frequently as per their convenient and construct the password with complexity as per standard IT security policies of their own. &#x00A;   5.  HealMRS is free to use for the first 3 months, which is considered as a trial period and chargeable as per agreed tariff bundle with sales professionals of HealMRS, soon after the trial period. &#x00A;    6.  Any difficulties could be communicated to HealMRS service center by e-mail to avail the service support for the resolution of the difficulties. &#x00A;  7.  Any payment issues shall be settled within 60 days from the invoice date to avoid the denial of access to HealMRS.  &#x00A;  8.  Customer has been given rights to access the software with unique access credential for the purpose of avoidance of medical error, reduction of diagnostic time and cost for the doctors, who practice in their own clinics or owning Multispecialty Hospitals.  &#x00A; 9.  Customers have given rights to use the HealMRS for the above said purpose and not for any other purposes.&#x00A; 10. Service providers of HealMRS will take a regular back-up of the patient data base periodically. However, it is advised to take a back-up at the end user (Customer) side also to avoid loss of patient data in the event of force major conditions like Ransome attack, virus threat, Hackers attack, system crash etc.,&#x00A;  11. HealMRS is the property of XXXXXX and by agreeing to the terms and conditions, the end user(Customer) does not possess/claim the ownership, copyright, trademark, trade secrets, patents, Intellectual property rights of Heal MRS.&#x00A;   12. Customer agrees that only authorized Doctors, officers, receptionist, Lab technicians, Nurses, employees, and Pharmacist of Customer will use the HealMRS or have access to the Licensed Software (or to any part thereof), and that none of Doctors, officers, receptionist, Lab  technicians,  Nurses, employees, and Pharmacists will disclose the HealMRS are, or any portion thereof, or permit the Licensed Software, or any portion thereof, to be used by any person or entity other than those entities identified on the Sale agreement. Customer acknowledges that certain of HealMRS’ rights may be derived from Service provider agreements with third parties, and Customer agrees to preserve the confidentiality of information provided by HealMRS under such third-party license agreements&#x00A; 13  HealMRS is a software service provider to the customer with unique credentials and does not have any involvement in the diagnoses, treatment of any patient and hence does not carry any responsibility on patients’ health care, illness, healing, inappropriate treatment, prescription of inappropriate medicines and hence does not hold any responsibility on consequential damage/effect of the patient, due to any errors in the treatment and health care process.', 'UserAcknowledge', 'a74f7a7f-9dd1-4a76-932d-01c1a4cf84b1', NULL, NULL, NULL, NULL, NULL, NULL);
+         </sql>
+            
+            
+    </changeSet>
+</databaseChangeLog>    

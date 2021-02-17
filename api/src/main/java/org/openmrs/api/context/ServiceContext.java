@@ -38,6 +38,7 @@ import org.openmrs.api.ProgramWorkflowService;
 import org.openmrs.api.ProviderService;
 import org.openmrs.api.SerializationService;
 import org.openmrs.api.UserService;
+import org.openmrs.api.UserAcknowledgeService;
 import org.openmrs.api.VisitService;
 import org.openmrs.api.ConditionService;
 import org.openmrs.api.DiagnosisService;
@@ -506,7 +507,18 @@ public class ServiceContext implements ApplicationContextAware {
 	public void setUserService(UserService userService) {
 		setService(UserService.class, userService);
 	}
+	// by sindhu
+	public UserAcknowledgeService getUserAcknowledgeService() {
+		return getService(UserAcknowledgeService.class);
+	}
 	
+	/**
+	 * @param userService the userService to set
+	 */
+	public void setUserAcknowledgeService(UserAcknowledgeService userAcknowledgeService) {
+		setService(UserAcknowledgeService.class, userAcknowledgeService);
+	}
+	//end by sindhu
 	/**
 	 * Gets the MessageSourceService used in the context.
 	 *
