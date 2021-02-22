@@ -9,6 +9,7 @@
  */
 package org.openmrs.api.db.hibernate;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,8 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 import org.openmrs.Person;
+import org.openmrs.PersonAttribute;
+import org.openmrs.PersonAttributeType;
 import org.openmrs.Provider;
 import org.openmrs.ProviderAttribute;
 import org.openmrs.ProviderAttributeType;
@@ -157,6 +160,44 @@ public class HibernateProviderDAO implements ProviderDAO {
 		return providers;
 	}
 	
+	/**
+	 * @see org.openmrs.api.db.ProviderDAO#getProviders(String, Map, Integer, Integer, boolean,
+	 *      String)
+	 */
+	@Override
+	public List<Provider> getProviders(String name, Map<ProviderAttributeType, String> serializedAttributeValues,
+	        Integer start, Integer length, boolean includeRetired, String enterpriseGuid) {
+		Criteria criteria = prepareProviderCriteria(name, includeRetired);
+		if (start != null) {
+			criteria.setFirstResult(start);
+		}
+		if (length != null) {
+			criteria.setMaxResults(length);
+		}
+		
+		if (includeRetired) {
+			//push retired Provider to the end of the returned list
+			criteria.addOrder(Order.asc("retired"));
+		}
+		
+		List<Provider> providers = criteria.list();
+		if (serializedAttributeValues != null) {
+			CollectionUtils.filter(providers,
+			    new AttributeMatcherPredicate<Provider, ProviderAttributeType>(serializedAttributeValues));
+		}
+		List<Provider> providersbyEnterprise = new ArrayList<Provider>();
+		PersonAttributeType pat = Context.getPersonService().getPersonAttributeTypeByName("Enterprise");
+		for (Provider provider : providers) {
+			if (provider.getPerson().getAttribute(pat) != null) {
+				PersonAttribute paForEnterprise = provider.getPerson().getAttribute(pat);
+				if (paForEnterprise.getValue().equals(enterpriseGuid)) {
+					providersbyEnterprise.add(provider);
+				}
+			}
+		}
+		
+		return providersbyEnterprise;
+	}
 	private MatchMode getMatchMode() {
 		String matchMode = Context.getAdministrationService().getGlobalProperty(
 		    OpenmrsConstants.GLOBAL_PROPERTY_PROVIDER_SEARCH_MATCH_MODE);
@@ -329,4 +370,5 @@ public class HibernateProviderDAO implements ProviderDAO {
 		criteria.add(Restrictions.ilike("identifier", identifier, MatchMode.EXACT));
 		return (Provider) criteria.uniqueResult();
 	}
+	
 }

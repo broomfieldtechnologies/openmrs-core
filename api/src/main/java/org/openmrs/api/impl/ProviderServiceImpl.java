@@ -69,6 +69,16 @@ public class ProviderServiceImpl extends BaseOpenmrsService implements ProviderS
 	}
 	
 	/**
+	 * @see org.openmrs.api.ProviderService#getAllProvidersForEnterpriseId(boolean)
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<Provider> getAllProvidersForEnterprise(boolean includeRetired) throws APIException {
+		String enterpriseId = getEnterpriseForLoggedinUser();
+		return getAllProvidersForEnterprise(includeRetired, enterpriseId);
+	}
+	
+	/**
 	 * @see org.openmrs.api.ProviderService#getAllProviders(boolean)
 	 */
 	@Override
@@ -194,6 +204,19 @@ public class ProviderServiceImpl extends BaseOpenmrsService implements ProviderS
 	}
 	
 	/**
+	 * @see org.openmrs.api.ProviderService#getProviders(String, Integer, Integer, java.util.Map,
+	 *      boolean, String)
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<Provider> getProviders(String query, Integer start, Integer length,
+	        Map<ProviderAttributeType, Object> attributeValues, boolean includeRetired, String enterpriseGuid) {
+		Map<ProviderAttributeType, String> serializedAttributeValues = CustomDatatypeUtil
+		        .getValueReferences(attributeValues);
+		return dao.getProviders(query, serializedAttributeValues, start, length, includeRetired, enterpriseGuid);
+	}
+	
+	/**
 	 * @see org.openmrs.api.ProviderService#getProviders(String, Integer, Integer, java.util.Map)
 	 */
 	@Override
@@ -308,6 +331,16 @@ public class ProviderServiceImpl extends BaseOpenmrsService implements ProviderS
 	@Transactional(readOnly = true)
 	public Provider getProviderByIdentifier(String identifier) {
 		return dao.getProviderByIdentifier(identifier);
+	}
+	
+	@Override
+	public String getEnterpriseForLoggedinUser() {
+		String enterpriseValue = "";
+		if (Context.getAuthenticatedUser() != null && Context.getAuthenticatedUser().getPerson() != null
+		        && Context.getAuthenticatedUser().getPerson().getAttribute("Enterprise") != null) {
+			enterpriseValue = Context.getAuthenticatedUser().getPerson().getAttribute("Enterprise").getValue();
+		}
+		return enterpriseValue;
 	}
 	
 	/**

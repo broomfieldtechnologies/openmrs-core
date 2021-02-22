@@ -157,6 +157,30 @@ public interface ProviderService extends OpenmrsService {
 	 * @param start
 	 * @param length
 	 * @param attributes
+	 * @param includeRetired
+	 * @param enterpriseGuid
+	 * @return the list of Providers given the query , current page and page length
+	 * @should fetch provider with given identifier with case in sensitive
+	 * @should fetch provider with given name with case in sensitive
+	 * @should fetch provider by matching query string with any unVoided PersonName's Given Name
+	 * @should fetch provider by matching query string with any unVoided PersonName's middleName
+	 * @should fetch provider by matching query string with any unVoided Person's familyName
+	 * @should not fetch provider if the query string matches with any voided Person name for that
+	 *         Provider
+	 * @should get all visits with given attribute values
+	 * @should not find any visits if none have given attribute values
+	 * @should return all providers if query is empty
+	 * @should find provider by identifier
+	 */
+	@Authorized({ PrivilegeConstants.GET_PROVIDERS })
+	public List<Provider> getProviders(String query, Integer start, Integer length,
+	        Map<ProviderAttributeType, Object> attributes, boolean includeRetired, String enterpriseGuid);
+	
+	/**
+	 * @param query
+	 * @param start
+	 * @param length
+	 * @param attributes
 	 * @return the list of Providers given the query , current page and page length
 	 * @should fetch provider with given identifier with case in sensitive
 	 * @should fetch provider with given name with case in sensitive
@@ -323,4 +347,10 @@ public interface ProviderService extends OpenmrsService {
 	public Provider getUnknownProvider();
 
 	List<Provider> getAllProvidersForEnterprise(boolean includeRetired, String Enterprise);
+	
+	List<Provider> getAllProvidersForEnterprise(boolean includeRetired);
+	
+	@Authorized({ PrivilegeConstants.GET_PROVIDERS })
+	public String getEnterpriseForLoggedinUser();
+	
 }

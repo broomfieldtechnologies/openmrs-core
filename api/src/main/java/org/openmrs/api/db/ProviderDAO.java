@@ -33,6 +33,7 @@ public interface ProviderDAO {
 	 */
 	List<Provider> getAllProviders(boolean includeRetired);
 	
+
 	/**
 	 * Saves/Updates a given Provider
 	 */
@@ -71,6 +72,18 @@ public interface ProviderDAO {
 	 */
 	public List<Provider> getProviders(String name, Map<ProviderAttributeType, String> serializedAttributeValues,
 	        Integer start, Integer length, boolean includeRetired);
+	
+	/**
+	 * @param name
+	 * @param serializedAttributeValues
+	 * @param start
+	 * @param length
+	 * @param includeRetired
+	 * @param enterpriseGuid
+	 * @return List of Providers
+	 */
+	public List<Provider> getProviders(String name, Map<ProviderAttributeType, String> serializedAttributeValues,
+	        Integer start, Integer length, boolean includeRetired, String enterpriseGuid);
 	
 	/**
 	 * @param name
@@ -115,6 +128,13 @@ public interface ProviderDAO {
 	 * @see ProviderService#getProviderAttributeByUuid(String)
 	 */
 	ProviderAttribute getProviderAttributeByUuid(String uuid);
+	
+	//	/**
+	//	 * Gets all Providers
+	//	 * 
+	//	 * @param includeRetired - whether or not to include retired Provider
+	//	 */
+	//	List<Provider> getAllProvidersForEnterprise(boolean includeRetired, String enterpriseGuid);
 	
 	/**
 	 * @see ProviderService#isProviderIdentifierUnique(Provider)
